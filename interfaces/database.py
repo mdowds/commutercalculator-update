@@ -1,5 +1,4 @@
 from typing import Type, Tuple
-from datetime import datetime
 
 from fnplus import curried
 
