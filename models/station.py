@@ -4,7 +4,7 @@ from .cc_model import CCModel
 
 class Station(CCModel):
     sid = CharField(primary_key=True)
-    # name = CharField(null=False)
+    name = CharField(null=False)
     # lat = DoubleField()
     # long = DoubleField()
     # postcode = CharField()

@@ -3,20 +3,21 @@ from typing import Type, Tuple
 from fn import F
 from fnplus import tmap, curried
 
-from models import Station
+from models import Station, JourneyTime
+from interfaces import database as db
 
 
 @curried
-def get_stations(station_model: Type[Station]) -> Tuple[Station]:
-    return station_model.select() \
-        .where((Station.min_zone == 1) | (Station.max_zone == 1)) \
-        .order_by(Station.journey_times_updated)\
-        .limit(3)
+def update_destinations(all_stations: Tuple[Station, ...], destinations: Tuple[Station, ...]) -> Tuple[str, ...]:
+    return tmap(lambda s: s.name, destinations)
 
 
-@curried
-def update_stations(i):
-    return i
+def update_destination(all_stations: Tuple[Station, ...], destination: Station) -> str:
+    return destination.name
+
+
+def update_journey(destination: Station, origin: Station) -> JourneyTime:
+    pass
 
 
 @curried
@@ -24,4 +25,4 @@ def output_message(i):
     return i
 
 
-pipe = F() >> get_stations() >> update_stations() >> output_message()
+pipe = F() >> db.get_stations_to_update() >> update_destinations() >> output_message()
