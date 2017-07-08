@@ -48,12 +48,12 @@ class TestUpdateJourneyTimes(TestCase):
         return self._run_station_query_func(get_all_stations)
 
     def _run_station_query_func(self, f):
-        stations = f(Station)
+        stations = f()
         if len(stations) > 0:
             return stations
         else:
             self._save_test_data()
-            return f(Station)
+            return f()
 
     def _save_test_data(self):
         for station in self._create_test_data(): station.save(force_insert=True)

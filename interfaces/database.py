@@ -1,20 +1,17 @@
-from typing import Type, Tuple
-
-from fnplus import curried
+from typing import Tuple
 
 from models import Station, JourneyTime
 
 
-@curried
-def get_stations_to_update(station_model: Type[Station]) -> Tuple[Station, ...]:
-    return station_model.select() \
+def get_stations_to_update() -> Tuple[Station, ...]:
+    return Station.select() \
         .where((Station.min_zone == 1) | (Station.max_zone == 1)) \
         .order_by(Station.journey_times_updated)\
         .limit(3)
 
 
-def get_all_stations(station_model: Type[Station]) -> Tuple[Station, ...]:
-    return station_model.select().order_by(Station.name)
+def get_all_stations() -> Tuple[Station, ...]:
+    return Station.select().order_by(Station.name)
 
 
 def save_journey_time(destination: Station, origin: Station, time: int) -> JourneyTime:
