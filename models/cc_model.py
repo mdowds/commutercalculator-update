@@ -1,8 +1,15 @@
-import peewee
+from peewee import Model, SqliteDatabase
 
 from config import load_config_value
 
 
-class CCModel(peewee.Model):
+def _database_path() -> SqliteDatabase:
+    try:
+        return SqliteDatabase(load_config_value('dbFilePath'))
+    except KeyError:
+        return SqliteDatabase(':memory:')
+
+
+class CCModel(Model):
     class Meta:
-        database = peewee.SqliteDatabase(load_config_value('dbFilePath'))
+        database = _database_path()
