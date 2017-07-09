@@ -3,5 +3,5 @@ python:
   - 3.5
 install:
   - pip install coveralls
-script: coverage run --omit=tests/*,*site-packages/*  -m unittest discover tests
+script: coverage run --omit=*site-packages/*  -m unittest discover tests
 after_success: coveralls
