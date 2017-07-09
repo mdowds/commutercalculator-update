@@ -1,4 +1,3 @@
-from collections import namedtuple
 from datetime import date, time, datetime, timedelta
 from typing import Any, Dict, Iterable
 from functools import reduce
@@ -11,21 +10,18 @@ from fn import F
 from config import load_config_value
 from models import Station
 
-JourneyTimeResult = namedtuple('JourneyTimeResult', ('origin', 'time'))
-
 
 @curried
-def get_peak_journey_time(destination: Station, origin: Station) -> Either[JourneyTimeResult]:
-    pipe = F() >> _get_peak_time >> _directions_request(origin, destination) >> _extract_journey_time(origin)
-
+def get_peak_journey_time(destination: Station, origin: Station) -> Either[int]:
+    pipe = F() >> _get_peak_time >> _directions_request(origin, destination) >> _extract_journey_time
     return pipe(date.today())
 
 # Helpers
 
 @curried
-def _directions_request(origin: Station, destination: Station, arrival_time: int=None) -> Either:
+def _directions_request(origin: Station, destination: Station, arrival_time: int=None) -> Either[Dict]:
     @curried
-    def _request(origin, destination, arrival_time, g):
+    def _request(origin, destination, arrival_time, g) -> Either[Dict]:
         return g.directions(
             "%s,%s" % (origin.lat, origin.long),
             "%s,%s" % (destination.lat, destination.long),
@@ -39,8 +35,8 @@ def _directions_request(origin: Station, destination: Station, arrival_time: int
 
 
 @curried
-def _extract_journey_time(origin: Station, response: Either) -> Either[JourneyTimeResult]:
-    pipe = F() >> Either.bind(_dict_path((0, "legs", 0, "duration", "value"))) >> Either.bind(lambda t: int(t/60)) >> Either.bind(lambda t: JourneyTimeResult(origin, t))
+def _extract_journey_time(response: Either[Dict]) -> Either[int]:
+    pipe = F() >> Either.bind(_dict_path((0, "legs", 0, "duration", "value"))) >> Either.bind(lambda t: int(t/60))
     return pipe(response)
 
 
