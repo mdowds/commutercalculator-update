@@ -2,10 +2,9 @@
 
 path=$1
 if [ -n "$path" ]; then
-    cd "$path"
-    result=`python3 -m api.data.update.journey_time`
+    result=`python3 -m journey_time`
     echo "$result"
-    cd data
+    cd "$path"
     git add ccdb.sqlite
     git commit -m "$result"
 fi
