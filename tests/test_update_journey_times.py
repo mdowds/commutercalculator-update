@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from update_journey_times import *
-from update_journey_times import _update_journey
+from update_journey_times import _update_journey, _update_destinations, _update_destination, _output_message
 from tests.helpers import make_datetime
 
 
@@ -12,17 +12,17 @@ class TestUpdateJourneyTimes(TestCase):
 
     def test_update_destinations(self):
         destinations = self._all_stations[0:3]
-        updated = update_destinations(self._mock_get_time, self._mock_save_journey, self._mock_update_dest_record, self._all_stations, destinations)
+        updated = _update_destinations(self._mock_get_time, self._mock_save_journey, self._mock_update_dest_record, self._all_stations, destinations)
         self.assertEqual((3,9,0), updated)
 
     def test_update_destination(self):
         destination = self._all_stations[0]
-        updated = update_destination(self._mock_get_time, self._mock_save_journey, self._mock_update_dest_record, self._all_stations, destination)
+        updated = _update_destination(self._mock_get_time, self._mock_save_journey, self._mock_update_dest_record, self._all_stations, destination)
         self.assertEqual((3,0), updated)
 
     def test_update_destination_error(self):
         destination = self._all_stations[0]
-        updated = update_destination(self._mock_get_time_error, self._mock_save_journey, self._mock_update_dest_record, self._all_stations, destination)
+        updated = _update_destination(self._mock_get_time_error, self._mock_save_journey, self._mock_update_dest_record, self._all_stations, destination)
         self.assertEqual((0,3), updated)
 
     def test_update_journey(self):
@@ -40,6 +40,9 @@ class TestUpdateJourneyTimes(TestCase):
         result = _update_journey(self._mock_get_time_error, self._mock_save_journey, dest, origin).get_error()
 
         self.assertEqual(result.__str__(), self._mock_get_time_error().get_error().__str__())
+
+    def test_output_message(self):
+        self.assertEqual("2 stations updated with 3 journey records created and 0 errors", _output_message((2,3,0)))
 
     # Helpers
 

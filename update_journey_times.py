@@ -2,7 +2,6 @@ from typing import Tuple, Callable, NamedTuple, Iterable, TypeVar
 from functools import reduce
 from datetime import datetime
 
-from fn import F
 from fnplus import tmap, curried, Either, tfilter
 
 from models import Station, JourneyTime
@@ -15,14 +14,29 @@ UpdateDestRecordFunc = Callable[[Station, datetime], Station]
 UpdateResponse = NamedTuple('UpdateResponse', (('updates', int), ('errors', int)))
 
 
-@curried
-def update_destinations(get_time: GetTimeFunc,
-                        save_journey: SaveJourneyFunc,
-                        update_dest_record: UpdateDestRecordFunc,
-                        all_stations: Tuple[Station, ...],
-                        destinations: Tuple[Station, ...]
-                        ) -> Tuple[int, int, int]:
-    all_update_responses = tmap(update_destination(get_time, save_journey, update_dest_record, all_stations), destinations)
+def update_journey_times():
+    stations_to_update = db.get_stations_to_update()
+    all_stations = db.get_all_stations()
+
+    update_results = _update_destinations(
+        #gmaps.get_peak_journey_time,
+        lambda d,o: Either(10),
+        db.save_journey_time,
+        db.update_journey_times_updated,
+        all_stations,
+        stations_to_update
+    )
+
+    return _output_message(update_results)
+
+
+def _update_destinations(get_time: GetTimeFunc,
+                         save_journey: SaveJourneyFunc,
+                         update_dest_record: UpdateDestRecordFunc,
+                         all_stations: Tuple[Station, ...],
+                         destinations: Tuple[Station, ...]
+                         ) -> Tuple[int, int, int]:
+    all_update_responses = tmap(_update_destination(get_time, save_journey, update_dest_record, all_stations), destinations)
 
     updates = reduce(
         lambda updates, updates_for_dest: updates + updates_for_dest.updates,
@@ -36,18 +50,18 @@ def update_destinations(get_time: GetTimeFunc,
 
 
 @curried
-def update_destination(get_time: GetTimeFunc,
+def _update_destination(get_time: GetTimeFunc,
                         save_journey: SaveJourneyFunc,
                         update_dest_record: UpdateDestRecordFunc,
                         all_stations: Tuple[Station, ...],
                         destination: Station
-                    ) -> UpdateResponse:
+                        ) -> UpdateResponse:
     update = _update_journey(get_time, save_journey, destination)
     origins = tfilter(lambda s: s.sid != destination.sid, all_stations)
 
     journeys = tmap(update, origins)
 
-    updates = conditional_len(lambda j: j.get_error() is None, journeys)
+    updates = _conditional_len(lambda j: j.get_error() is None, journeys)
     errors = len(journeys) - updates
 
     if updates / len(journeys) > 0.9:
@@ -66,18 +80,14 @@ def _update_journey(get_time: GetTimeFunc,
     return Either.try_bind(save_journey(destination, origin))(journey_time)
 
 
-@curried
-def output_message(i):
-    return i
+def _output_message(results: Tuple[int,int,int]) -> str:
+    stations = str(results[0])
+    journeys = str(results[1])
+    errors = str(results[2])
+
+    return stations + " stations updated with " + journeys + " journey records created and " + errors + " errors"
 
 
 T = TypeVar('T')
-def conditional_len(cond: Callable[[T], bool], seq: Iterable[T]) -> int:
+def _conditional_len(cond: Callable[[T], bool], seq: Iterable[T]) -> int:
     return reduce(lambda len, x: len+1 if cond(x) else len, seq, 0)
-
-
-def conditional_sum(cond: Callable[[int], bool], seq: Iterable[T]) -> int:
-    return reduce(lambda len, x: len+1 if cond(x) else len, seq, 0)
-
-
-pipe = F() >> db.get_stations_to_update() >> update_destinations(gmaps.get_peak_journey_time, db.get_all_stations()) >> output_message()
