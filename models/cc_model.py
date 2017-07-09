@@ -1,8 +1,8 @@
 import peewee
-import os
+
+from config import load_config_value
 
 
 class CCModel(peewee.Model):
     class Meta:
-        #TODO: Make path to DB configurable
-        database = peewee.SqliteDatabase(os.path.join(os.getcwd(), 'data', 'ccdb.sqlite'))
+        database = peewee.SqliteDatabase(load_config_value('dbFilePath'))
