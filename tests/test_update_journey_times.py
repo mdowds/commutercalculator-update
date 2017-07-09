@@ -2,13 +2,13 @@ from unittest import TestCase
 
 from update_journey_times import *
 from update_journey_times import _update_journey, _update_destinations, _update_destination, _output_message
-from tests.helpers import make_datetime
+from tests.helpers import create_test_data
 
 
 class TestUpdateJourneyTimes(TestCase):
 
     def setUp(self):
-        self._all_stations = self._create_test_data()
+        self._all_stations = create_test_data()
 
     def test_update_destinations(self):
         destinations = self._all_stations[0:3]
@@ -46,13 +46,13 @@ class TestUpdateJourneyTimes(TestCase):
 
     # Helpers
 
-    def _create_test_data(self):
-        return (
-            Station(sid='FOO', name='Foo', min_zone=1, max_zone=1, journey_times_updated=make_datetime('10')),
-            Station(sid='BAR', name='Bar', min_zone=1, max_zone=1, journey_times_updated=make_datetime('05')),
-            Station(sid='BAZ', name='Baz', min_zone=1, max_zone=2, journey_times_updated=make_datetime('12')),
-            Station(sid='FOZ', name='Foz', min_zone=2, max_zone=2, journey_times_updated=make_datetime('09'))
-        )
+    # def _create_test_data(self):
+    #     return (
+    #         Station(sid='FOO', name='Foo', min_zone=1, max_zone=1, journey_times_updated=make_datetime('10')),
+    #         Station(sid='BAR', name='Bar', min_zone=1, max_zone=1, journey_times_updated=make_datetime('05')),
+    #         Station(sid='BAZ', name='Baz', min_zone=1, max_zone=2, journey_times_updated=make_datetime('12')),
+    #         Station(sid='FOZ', name='Foz', min_zone=2, max_zone=2, journey_times_updated=make_datetime('09'))
+    #     )
 
     @staticmethod
     def _mock_get_time(d:Station=None, o:Station=None):

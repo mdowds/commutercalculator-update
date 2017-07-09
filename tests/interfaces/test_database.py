@@ -5,15 +5,20 @@ from peewee import SqliteDatabase
 from fnplus import tfilter
 
 from interfaces.database import *
-from tests.helpers import make_datetime
+from tests.helpers import make_datetime, create_test_data
 
 test_db = SqliteDatabase(':memory:')
 
 
 class TestUpdateJourneyTimes(TestCase):
 
-    _fooStation = Station(sid='FOO', name='Foo', min_zone=1, max_zone=1, journey_times_updated=make_datetime('10'))
-    _barStation = Station(sid='BAR', name='Bar', min_zone=1, max_zone=1, journey_times_updated=make_datetime('05'))
+    # _fooStation = Station(sid='FOO', name='Foo', min_zone=1, max_zone=1, journey_times_updated=make_datetime('10'))
+    # _barStation = Station(sid='BAR', name='Bar', min_zone=1, max_zone=1, journey_times_updated=make_datetime('05'))
+
+    def setUp(self):
+        self._all_stations = create_test_data()
+        self._fooStation = self._all_stations[0]
+        self._barStation = self._all_stations[1]
 
     def run(self, result=None):
         # All queries will be run in `test_db`
@@ -61,12 +66,12 @@ class TestUpdateJourneyTimes(TestCase):
             return f()
 
     def _save_test_data(self):
-        for station in self._create_test_data(): station.save(force_insert=True)
+        for station in self._all_stations: station.save(force_insert=True)
 
-    def _create_test_data(self):
-        return (
-            self._fooStation,
-            self._barStation,
-            Station(sid='BAZ', name='Baz', min_zone=1, max_zone=2, journey_times_updated=make_datetime('12')),
-            Station(sid='FOZ', name='Foz', min_zone=2, max_zone=2, journey_times_updated=make_datetime('09'))
-        )
+    # def _create_test_data(self):
+    #     return (
+    #         self._fooStation,
+    #         self._barStation,
+    #         Station(sid='BAZ', name='Baz', min_zone=1, max_zone=2, journey_times_updated=make_datetime('12')),
+    #         Station(sid='FOZ', name='Foz', min_zone=2, max_zone=2, journey_times_updated=make_datetime('09'))
+    #     )
