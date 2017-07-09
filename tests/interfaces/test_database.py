@@ -39,6 +39,11 @@ class TestUpdateJourneyTimes(TestCase):
         res = save_journey_time(self._fooStation, self._barStation, 10)
         self.assertEqual(10, res.time)
 
+    def test_update_journey_times_updated(self):
+        date = make_datetime('01')
+        res = update_journey_times_updated(self._fooStation, date)
+        self.assertEqual(date, res.journey_times_updated)
+
     # Helpers
 
     def _run_get_stations_to_update(self):
