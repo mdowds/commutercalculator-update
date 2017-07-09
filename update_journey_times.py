@@ -14,13 +14,13 @@ UpdateDestRecordFunc = Callable[[Station, datetime], Station]
 UpdateResponse = NamedTuple('UpdateResponse', (('updates', int), ('errors', int)))
 
 
-def update_journey_times():
+def update_journey_times() -> str:
     stations_to_update = db.get_stations_to_update()
     all_stations = db.get_all_stations()
 
     update_results = _update_destinations(
-        #gmaps.get_peak_journey_time,
-        lambda d,o: Either(10),
+        gmaps.get_peak_journey_time,
+        #lambda d,o: Either(10), - mock for testing
         db.save_journey_time,
         db.update_journey_times_updated,
         all_stations,
@@ -76,6 +76,7 @@ def _update_journey(get_time: GetTimeFunc,
                        destination: Station,
                        origin: Station
                    ) -> Either[JourneyTime]:
+    print("Updating from " + origin.name + " to " + destination.name)
     journey_time = get_time(destination, origin)
     return Either.try_bind(save_journey(destination, origin))(journey_time)
 
@@ -91,3 +92,7 @@ def _output_message(results: Tuple[int,int,int]) -> str:
 T = TypeVar('T')
 def _conditional_len(cond: Callable[[T], bool], seq: Iterable[T]) -> int:
     return reduce(lambda len, x: len+1 if cond(x) else len, seq, 0)
+
+
+if __name__ == '__main__':
+    print(update_journey_times())
