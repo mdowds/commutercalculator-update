@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from update_journey_times import *
-from update_journey_times import _update_journey, _update_destinations, _update_destination, _output_message
+from updaters.journey_times import *
+from updaters.journey_times import _update_journey, _update_destinations, _update_destination, _output_message
 from tests.helpers import create_test_data
 
 
@@ -55,11 +55,11 @@ class TestUpdateJourneyTimes(TestCase):
     #     )
 
     @staticmethod
-    def _mock_get_time(d:Station=None, o:Station=None):
+    def _mock_get_time(k:str=None, d:Station=None, o:Station=None):
         return Either(12)
 
     @staticmethod
-    def _mock_get_time_error(d:Station=None, o:Station=None):
+    def _mock_get_time_error(k:str=None, d:Station=None, o:Station=None):
         return Either(None, Exception("Error"))
 
     @staticmethod

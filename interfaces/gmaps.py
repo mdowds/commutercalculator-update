@@ -7,19 +7,18 @@ import googlemaps
 from fnplus import curried, Either
 from fn import F
 
-from config import load_config_value
 from models import Station
 
 
 @curried
-def get_peak_journey_time(destination: Station, origin: Station) -> Either[int]:
-    pipe = F() >> _get_peak_time >> _directions_request(origin, destination) >> _extract_journey_time
+def get_peak_journey_time(api_key: str, destination: Station, origin: Station) -> Either[int]:
+    pipe = F() >> _get_peak_time >> _directions_request(api_key, origin, destination) >> _extract_journey_time
     return pipe(date.today())
 
 # Helpers
 
 @curried
-def _directions_request(origin: Station, destination: Station, arrival_time: int=None) -> Either[Dict]:
+def _directions_request(api_key: str, origin: Station, destination: Station, arrival_time: int=None) -> Either[Dict]:
     @curried
     def _request(origin, destination, arrival_time, g) -> Either[Dict]:
         return g.directions(
@@ -29,9 +28,9 @@ def _directions_request(origin: Station, destination: Station, arrival_time: int
             arrival_time=arrival_time
         )
 
-    directions = F() >> Either.try_(load_config_value) >> Either.try_bind(googlemaps.Client) >> Either.try_bind(_request(origin, destination, arrival_time))
+    directions = F() >> Either.try_(googlemaps.Client) >> Either.try_bind(_request(origin, destination, arrival_time))
 
-    return directions("gmapsApiKey")
+    return directions(api_key)
 
 
 @curried

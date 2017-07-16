@@ -6,6 +6,7 @@ from models import Station
 def make_datetime(day):
     return datetime.strptime(day + ' 06 2016', '%d %m %Y')
 
+
 def create_test_data():
     def _station(sid, name, min_zone=1, max_zone=1, day_updated='01'):
         return Station(
