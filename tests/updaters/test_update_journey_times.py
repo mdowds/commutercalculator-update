@@ -55,11 +55,11 @@ class TestUpdateJourneyTimes(TestCase):
     #     )
 
     @staticmethod
-    def _mock_get_time(k:str=None, d:Station=None, o:Station=None):
+    def _mock_get_time(d:Station=None, o:Station=None):
         return Either(12)
 
     @staticmethod
-    def _mock_get_time_error(k:str=None, d:Station=None, o:Station=None):
+    def _mock_get_time_error(d:Station=None, o:Station=None):
         return Either(None, Exception("Error"))
 
     @staticmethod

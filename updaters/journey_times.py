@@ -18,7 +18,7 @@ def journey_times(api_key: str=None, debug: bool=False) -> str:
     stations_to_update = db.get_stations_to_update()
     all_stations = db.get_all_stations()
 
-    get_time = lambda d,o: Either(10) if debug else gmaps.get_peak_journey_time(api_key)
+    get_time = (lambda d, o: Either(10)) if debug else gmaps.get_peak_journey_time(api_key)
 
     update_results = _update_destinations(
         get_time,
@@ -57,10 +57,9 @@ def _update_destination(get_time: GetTimeFunc,
                         all_stations: Tuple[Station, ...],
                         destination: Station
                         ) -> UpdateResponse:
-    update = _update_journey(get_time, save_journey, destination)
     origins = tfilter(lambda s: s.sid != destination.sid, all_stations)
 
-    journeys = tmap(update, origins)
+    journeys = tmap(_update_journey(get_time, save_journey, destination), origins)
 
     updates = _conditional_len(lambda j: j.get_error() is None, journeys)
     errors = len(journeys) - updates
@@ -77,7 +76,7 @@ def _update_journey(get_time: GetTimeFunc,
                        destination: Station,
                        origin: Station
                    ) -> Either[JourneyTime]:
-    # print("Updating from " + origin.name + " to " + destination.name)
+    print("Updating from " + origin.name + " to " + destination.name)
     journey_time = get_time(destination, origin)
     return Either.try_bind(save_journey(destination, origin))(journey_time)
 
