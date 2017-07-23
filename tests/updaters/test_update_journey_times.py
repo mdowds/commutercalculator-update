@@ -46,14 +46,6 @@ class TestUpdateJourneyTimes(TestCase):
 
     # Helpers
 
-    # def _create_test_data(self):
-    #     return (
-    #         Station(sid='FOO', name='Foo', min_zone=1, max_zone=1, journey_times_updated=make_datetime('10')),
-    #         Station(sid='BAR', name='Bar', min_zone=1, max_zone=1, journey_times_updated=make_datetime('05')),
-    #         Station(sid='BAZ', name='Baz', min_zone=1, max_zone=2, journey_times_updated=make_datetime('12')),
-    #         Station(sid='FOZ', name='Foz', min_zone=2, max_zone=2, journey_times_updated=make_datetime('09'))
-    #     )
-
     @staticmethod
     def _mock_get_time(d:Station=None, o:Station=None):
         return Either(12)

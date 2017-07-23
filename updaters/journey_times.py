@@ -76,7 +76,7 @@ def _update_journey(get_time: GetTimeFunc,
                        destination: Station,
                        origin: Station
                    ) -> Either[JourneyTime]:
-    print("Updating from " + origin.name + " to " + destination.name)
+    # print("Updating from " + origin.name + " to " + destination.name)
     journey_time = get_time(destination, origin)
     return Either.try_bind(save_journey(destination, origin))(journey_time)
 
