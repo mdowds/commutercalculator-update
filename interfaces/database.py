@@ -32,6 +32,10 @@ def get_all_stations() -> Tuple[Station, ...]:
     return Station.select().order_by(Station.name)
 
 
+def get_all_nr_stations() -> Tuple[Station, ...]:
+    return Station.select().where(Station.modes == 'NR')
+
+
 @curried
 def save_journey_time(destination: Station, origin: Station, time: int) -> JourneyTime:
     return JourneyTime.create(origin=origin.sid, destination=destination.sid, time=int(time))

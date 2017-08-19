@@ -61,6 +61,9 @@ class TestUpdateJourneyTimes(TestCase):
         self.assertEqual('NR', res.modes)
         self.assertEqual(0, len(SeasonTicket.select().where(SeasonTicket.origin == res)))
 
+    def test_get_all_nr_stations_returns_correct_results(self):
+        self.assertEqual(3, len(get_all_nr_stations()))
+
     # Helpers
 
     def setUp_station_data(self) -> Tuple[Station, ...]:
