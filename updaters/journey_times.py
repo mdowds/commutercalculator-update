@@ -15,7 +15,7 @@ UpdateResponse = NamedTuple('UpdateResponse', (('updates', int), ('errors', int)
 
 
 def journey_times(api_key: str=None, debug: bool=False) -> str:
-    stations_to_update = db.get_stations_to_update()
+    stations_to_update = db.get_stations_for_journey_time_update()
     all_stations = db.get_all_stations()
 
     get_time = (lambda d, o: Either(10)) if debug else gmaps.get_peak_journey_time(api_key)

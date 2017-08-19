@@ -2,13 +2,13 @@ from unittest import TestCase
 
 from updaters.journey_times import *
 from updaters.journey_times import _update_journey, _update_destinations, _update_destination, _output_message
-from tests.helpers import create_test_data
+from tests.helpers import create_station_test_data
 
 
 class TestUpdateJourneyTimes(TestCase):
 
     def setUp(self):
-        self._all_stations = create_test_data()
+        self._all_stations = create_station_test_data()
 
     def test_update_destinations(self):
         destinations = self._all_stations[0:3]

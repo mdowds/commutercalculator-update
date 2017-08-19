@@ -12,3 +12,4 @@ class Station(CCModel):
     journey_times_updated = DateTimeField()
     min_zone = IntegerField()
     max_zone = IntegerField()
+    modes = CharField()
