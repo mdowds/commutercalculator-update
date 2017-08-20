@@ -1,0 +1,2213 @@
+{
+  "orig": {
+    "nlc": "6969",
+    "crs": "SRA",
+    "name": "STRATFORD LONDON",
+    "longname": "STRATFORD LONDON",
+    "ticketname": "STRATFORD LONDON",
+    "code": "SRA"
+  },
+  "dest": {
+    "nlc": "6965",
+    "crs": "LST",
+    "name": "LONDON LIVRPL ST",
+    "longname": "LONDON LIVERPOOL STREET",
+    "ticketname": "LONDON LIVRPL ST",
+    "code": "LST"
+  },
+  "travelcard_orig": false,
+  "travelcard_dest": false,
+  "zonal_orig": false,
+  "zonal_dest": false,
+  "railcard": {
+    "code": "   ",
+    "name": "PUBLIC",
+    "physical_card": false,
+    "geographically_restricted": false,
+    "restricted_issue": false,
+    "must_be_shown": true,
+    "holder": "ADULT",
+    "min_pass": 1,
+    "max_pass": 8,
+    "min_holder": 1,
+    "max_holder": 8,
+    "min_accomp_adult": 0,
+    "max_accomp_adult": 8,
+    "min_adult": 0,
+    "max_adult": 8,
+    "min_child": 0,
+    "max_child": 8,
+    "price": 0,
+    "discount_price": 0,
+    "validity": 12000
+  },
+  "railcard_valid": true,
+  "fares": [
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TF",
+        "name": "TRAVELCARD  7DF",
+        "longname": "TRAVELCARD WKLY 1ST",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 0,
+          "desc": "1ST"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 9030
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 4515
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0064",
+        "crs": "",
+        "name": "LONDON ZONES 1-5",
+        "longname": "LONDON ZONES 1-5",
+        "ticketname": "LONDON ZONES 1-5",
+        "code": "0064"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0064",
+        "crs": "",
+        "name": "LONDON ZONES 1-5",
+        "longname": "LONDON ZONES 1-5",
+        "ticketname": "LONDON ZONES 1-5",
+        "code": "0064"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TF",
+        "name": "TRAVELCARD  7DF",
+        "longname": "TRAVELCARD WKLY 1ST",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 0,
+          "desc": "1ST"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 8430
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 4215
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0034",
+        "crs": "",
+        "name": "LONDON ZONES 1-4",
+        "longname": "LONDON ZONES 1-4",
+        "ticketname": "LONDON ZONES 1-4",
+        "code": "0034"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0034",
+        "crs": "",
+        "name": "LONDON ZONES 1-4",
+        "longname": "LONDON ZONES 1-4",
+        "ticketname": "LONDON ZONES 1-4",
+        "code": "0034"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TF",
+        "name": "TRAVELCARD  7DF",
+        "longname": "TRAVELCARD WKLY 1ST",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 0,
+          "desc": "1ST"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 7100
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 3550
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0033",
+        "crs": "",
+        "name": "LONDON ZONES 1-3",
+        "longname": "LONDON ZONES 1-3",
+        "ticketname": "LONDON ZONES 1-3",
+        "code": "0033"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0033",
+        "crs": "",
+        "name": "LONDON ZONES 1-3",
+        "longname": "LONDON ZONES 1-3",
+        "ticketname": "LONDON ZONES 1-3",
+        "code": "0033"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TF",
+        "name": "TRAVELCARD  7DF",
+        "longname": "TRAVELCARD WKLY 1ST",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 0,
+          "desc": "1ST"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 5810
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 2905
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "0032",
+        "crs": "",
+        "name": "LONDON ZONES 1-2",
+        "longname": "LONDON ZONES 1-2",
+        "ticketname": "LONDON ZONES 1-2",
+        "code": "0032"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0032",
+        "crs": "",
+        "name": "LONDON ZONES 1-2",
+        "longname": "LONDON ZONES 1-2",
+        "ticketname": "LONDON ZONES 1-2",
+        "code": "0032"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TF",
+        "name": "TRAVELCARD  7DF",
+        "longname": "TRAVELCARD WKLY 1ST",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 0,
+          "desc": "1ST"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 4950
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 2475
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "6965",
+        "crs": "LST",
+        "name": "LONDON LIVRPL ST",
+        "longname": "LONDON LIVERPOOL STREET",
+        "ticketname": "LONDON LIVRPL ST",
+        "code": "LST"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": false,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "CRL",
+        "name": "TFL RAIL"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7DF",
+        "name": "SEVEN DAY   1ST",
+        "longname": "7DAY FIRST SEASON",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 0,
+          "desc": "1ST"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": true,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 2910
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 1455
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "6965",
+        "crs": "LST",
+        "name": "LONDON LIVRPL ST",
+        "longname": "LONDON LIVERPOOL STREET",
+        "ticketname": "LONDON LIVRPL ST",
+        "code": "LST"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": false,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "CRL",
+        "name": "TFL RAIL"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "FDR",
+        "name": "ANYTIME DAY 1R",
+        "longname": "ANYTIME DAY 1R",
+        "type": {
+          "code": 1,
+          "desc": "RETURN"
+        },
+        "tclass": {
+          "code": 0,
+          "desc": "1ST"
+        },
+        "validity": {
+          "code": 81,
+          "desc": "ON DATE SHOWN",
+          "out": "ON DATE SHOWN",
+          "rtn": "ON DATE SHOWN"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": true,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 1480
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 740
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "6965",
+        "crs": "LST",
+        "name": "LONDON LIVRPL ST",
+        "longname": "LONDON LIVERPOOL STREET",
+        "ticketname": "LONDON LIVRPL ST",
+        "code": "LST"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": false,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "CRL",
+        "name": "TFL RAIL"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "FDS",
+        "name": "ANYTIME DAY 1S",
+        "longname": "ANYTIME DAY 1S",
+        "type": {
+          "code": 0,
+          "desc": "SINGLE"
+        },
+        "tclass": {
+          "code": 0,
+          "desc": "1ST"
+        },
+        "validity": {
+          "code": 87,
+          "desc": "ON DATE SHOWN",
+          "out": "ON DATE SHOWN",
+          "rtn": "INVALID"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": true,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 740
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 370
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TS",
+        "name": "TRAVELCARD  7DS",
+        "longname": "TRAVELCARD WLY STD",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 6020
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 3010
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0064",
+        "crs": "",
+        "name": "LONDON ZONES 1-5",
+        "longname": "LONDON ZONES 1-5",
+        "ticketname": "LONDON ZONES 1-5",
+        "code": "0064"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0064",
+        "crs": "",
+        "name": "LONDON ZONES 1-5",
+        "longname": "LONDON ZONES 1-5",
+        "ticketname": "LONDON ZONES 1-5",
+        "code": "0064"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TS",
+        "name": "TRAVELCARD  7DS",
+        "longname": "TRAVELCARD WLY STD",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 5620
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 2810
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0034",
+        "crs": "",
+        "name": "LONDON ZONES 1-4",
+        "longname": "LONDON ZONES 1-4",
+        "ticketname": "LONDON ZONES 1-4",
+        "code": "0034"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0034",
+        "crs": "",
+        "name": "LONDON ZONES 1-4",
+        "longname": "LONDON ZONES 1-4",
+        "ticketname": "LONDON ZONES 1-4",
+        "code": "0034"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TS",
+        "name": "TRAVELCARD  7DS",
+        "longname": "TRAVELCARD WLY STD",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 4730
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 2365
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0033",
+        "crs": "",
+        "name": "LONDON ZONES 1-3",
+        "longname": "LONDON ZONES 1-3",
+        "ticketname": "LONDON ZONES 1-3",
+        "code": "0033"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0033",
+        "crs": "",
+        "name": "LONDON ZONES 1-3",
+        "longname": "LONDON ZONES 1-3",
+        "ticketname": "LONDON ZONES 1-3",
+        "code": "0033"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TS",
+        "name": "TRAVELCARD  7DS",
+        "longname": "TRAVELCARD WLY STD",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 3870
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 1935
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "0032",
+        "crs": "",
+        "name": "LONDON ZONES 1-2",
+        "longname": "LONDON ZONES 1-2",
+        "ticketname": "LONDON ZONES 1-2",
+        "code": "0032"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0032",
+        "crs": "",
+        "name": "LONDON ZONES 1-2",
+        "longname": "LONDON ZONES 1-2",
+        "ticketname": "LONDON ZONES 1-2",
+        "code": "0032"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7TS",
+        "name": "TRAVELCARD  7DS",
+        "longname": "TRAVELCARD WLY STD",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 3300
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 1650
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "6965",
+        "crs": "LST",
+        "name": "LONDON LIVRPL ST",
+        "longname": "LONDON LIVERPOOL STREET",
+        "ticketname": "LONDON LIVRPL ST",
+        "code": "LST"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": false,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "CRL",
+        "name": "TFL RAIL"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "7DS",
+        "name": "SEVEN DAY   STD",
+        "longname": "7DAY STANDARD SEASON",
+        "type": {
+          "code": 2,
+          "desc": "SEASON"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 0,
+          "desc": "(USE SEASON)",
+          "out": "(USE SEASON)",
+          "rtn": "(USE SEASON)"
+        },
+        "min_validity": 7,
+        "max_validity": 7,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": true,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 1820
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 910
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "ADT",
+        "name": "ANYTIME DAY TC",
+        "longname": "ANYTIME DAY TC",
+        "type": {
+          "code": 1,
+          "desc": "RETURN"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 81,
+          "desc": "ON DATE SHOWN",
+          "out": "ON DATE SHOWN",
+          "rtn": "ON DATE SHOWN"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 1750
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 870
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "ODT",
+        "name": "OFF-PEAK TCDSTD",
+        "longname": "OFF-PEAK DAY TRVLCRD",
+        "type": {
+          "code": 1,
+          "desc": "RETURN"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 81,
+          "desc": "ON DATE SHOWN",
+          "out": "ON DATE SHOWN",
+          "rtn": "ON DATE SHOWN"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": true,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "B1",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 1230
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 610
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0034",
+        "crs": "",
+        "name": "LONDON ZONES 1-4",
+        "longname": "LONDON ZONES 1-4",
+        "ticketname": "LONDON ZONES 1-4",
+        "code": "0034"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0034",
+        "crs": "",
+        "name": "LONDON ZONES 1-4",
+        "longname": "LONDON ZONES 1-4",
+        "ticketname": "LONDON ZONES 1-4",
+        "code": "0034"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "ADT",
+        "name": "ANYTIME DAY TC",
+        "longname": "ANYTIME DAY TC",
+        "type": {
+          "code": 1,
+          "desc": "RETURN"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 81,
+          "desc": "ON DATE SHOWN",
+          "out": "ON DATE SHOWN",
+          "rtn": "ON DATE SHOWN"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 1230
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 610
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "0029",
+        "crs": "",
+        "name": "TRVCARD 3",
+        "longname": "TRVCARD 3",
+        "ticketname": "TRVCARD 3",
+        "code": "0029"
+      },
+      "flow_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+        "nlc": "0035",
+        "crs": "",
+        "name": "LONDON ZONES 1-6",
+        "longname": "LONDON ZONES 1-6",
+        "ticketname": "LONDON ZONES 1-6",
+        "code": "0035"
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": true,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "ATO",
+        "name": "ATOC"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "OPG",
+        "name": "OFFPEAK GROUP10",
+        "longname": "OFFPEAK GROUP10",
+        "type": {
+          "code": 1,
+          "desc": "RETURN"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 81,
+          "desc": "ON DATE SHOWN",
+          "out": "ON DATE SHOWN",
+          "rtn": "ON DATE SHOWN"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": true,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "B1",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 810
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 400
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "6965",
+        "crs": "LST",
+        "name": "LONDON LIVRPL ST",
+        "longname": "LONDON LIVERPOOL STREET",
+        "ticketname": "LONDON LIVRPL ST",
+        "code": "LST"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": false,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "CRL",
+        "name": "TFL RAIL"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "SDR",
+        "name": "ANYTIME DAY R",
+        "longname": "ANYTIME DAY R",
+        "type": {
+          "code": 1,
+          "desc": "RETURN"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 81,
+          "desc": "ON DATE SHOWN",
+          "out": "ON DATE SHOWN",
+          "rtn": "ON DATE SHOWN"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": true,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 980
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 490
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "6965",
+        "crs": "LST",
+        "name": "LONDON LIVRPL ST",
+        "longname": "LONDON LIVERPOOL STREET",
+        "ticketname": "LONDON LIVRPL ST",
+        "code": "LST"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": false,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "CRL",
+        "name": "TFL RAIL"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "SDS",
+        "name": "ANYTIME DAY S",
+        "longname": "ANYTIME DAY S",
+        "type": {
+          "code": 0,
+          "desc": "SINGLE"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 87,
+          "desc": "ON DATE SHOWN",
+          "out": "ON DATE SHOWN",
+          "rtn": "INVALID"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "  ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": true,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 490
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 245
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "6965",
+        "crs": "LST",
+        "name": "LONDON LIVRPL ST",
+        "longname": "LONDON LIVERPOOL STREET",
+        "ticketname": "LONDON LIVRPL ST",
+        "code": "LST"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": false,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "CRL",
+        "name": "TFL RAIL"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "PAP",
+        "name": "PAYG PEAK INFO",
+        "longname": "PAYG PEAK INFO",
+        "type": {
+          "code": 0,
+          "desc": "SINGLE"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 67,
+          "desc": "NOT FOR TRAVEL",
+          "out": "NOT FOR TRAVEL",
+          "rtn": "INVALID"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": false,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "PI",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 290
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 145
+      }
+    },
+    {
+      "category": {
+        "code": 0,
+        "desc": "WALKUP"
+      },
+      "flow_orig": {
+        "nlc": "6969",
+        "crs": "SRA",
+        "name": "STRATFORD LONDON",
+        "longname": "STRATFORD LONDON",
+        "ticketname": "STRATFORD LONDON",
+        "code": "SRA"
+      },
+      "flow_dest": {
+        "nlc": "6965",
+        "crs": "LST",
+        "name": "LONDON LIVRPL ST",
+        "longname": "LONDON LIVERPOOL STREET",
+        "ticketname": "LONDON LIVRPL ST",
+        "code": "LST"
+      },
+      "group_orig": {
+
+      },
+      "group_dest": {
+
+      },
+      "travelcard_orig": false,
+      "travelcard_dest": false,
+      "zonal_orig": false,
+      "zonal_dest": false,
+      "fare_setter": {
+        "code": "CRL",
+        "name": "TFL RAIL"
+      },
+      "route": {
+        "code": 1000,
+        "name": "ANY - PERMITTED",
+        "longname": ".",
+        "ticketname": "."
+      },
+      "london_code": {
+        "code": 0,
+        "desc": "NO"
+      },
+      "ticket": {
+        "code": "POP",
+        "name": "PAYG OFFPK INFO",
+        "longname": "PAYG OFFPK INFO",
+        "type": {
+          "code": 0,
+          "desc": "SINGLE"
+        },
+        "tclass": {
+          "code": 1,
+          "desc": "STD"
+        },
+        "validity": {
+          "code": 67,
+          "desc": "NOT FOR TRAVEL",
+          "out": "NOT FOR TRAVEL",
+          "rtn": "INVALID"
+        },
+        "min_validity": 0,
+        "max_validity": 0,
+        "restr_date": false,
+        "restr_train": false,
+        "restr_area": true,
+        "reservations": {
+          "code": 0,
+          "desc": "NO"
+        }
+      },
+      "restriction_code": "PQ",
+      "railcard_restrictions": [
+
+      ],
+      "reversible": false,
+      "adult": {
+        "status": {
+          "code": "000",
+          "name": "ADULT",
+          "ticket_code": ""
+        },
+        "fare": 240
+      },
+      "child": {
+        "status": {
+          "code": "001",
+          "name": "CHILD",
+          "ticket_code": "CHILD"
+        },
+        "fare": 120
+      }
+    }
+  ],
+  "source": {
+    "code": 1,
+    "desc": "RJIS"
+  },
+  "valid_date": 20170521,
+  "valid_until_date": 20170902
+}
