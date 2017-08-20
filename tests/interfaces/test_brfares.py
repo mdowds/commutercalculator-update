@@ -15,7 +15,7 @@ class TestBrFares(TestCase):
         mock_requests.get.return_value = MockRequest()
         stations = helpers.create_station_test_data()
 
-        self.assertEqual(728, get_season_ticket_annual_price(stations[0], stations[1]))
+        self.assertEqual(728, get_season_ticket_annual_price(stations[0], stations[1]).value())
 
 
 class MockRequest:

@@ -14,10 +14,8 @@ UpdateResponse = NamedTuple('UpdateResponse', (('updates', int), ('errors', int)
 
 def season_tickets(debug: bool=False) -> str:
     station_to_update = db.get_station_for_season_ticket_update()
-    # return station_to_update.name
     all_stations = db.get_all_nr_stations()
-
-    get_price = (lambda d, o: Either(10)) if debug else brfares.get_season_ticket_annual_price(station_to_update)
+    get_price = (lambda d, o: Either(10)) if debug else brfares.get_season_ticket_annual_price
 
     update_results = _update_destination(
         get_price,
@@ -53,9 +51,8 @@ def _update_season_ticket(get_price: GetPriceFunc,
                           destination: Station,
                           origin: Station
                           ) -> Either[SeasonTicket]:
-    # print("Updating from " + origin.name + " to " + destination.name)
+    print("Updating from " + origin.name + " to " + destination.name)
     journey_time = get_price(destination, origin)
-
     return journey_time.try_call(save_season_ticket(destination, origin))
 
 
