@@ -61,7 +61,7 @@ def _update_destination(get_time: GetTimeFunc,
 
     journeys = tmap(_update_journey(get_time, save_journey, destination), origins)
 
-    updates = _conditional_len(lambda j: j.get_error() is None, journeys)
+    updates = _conditional_len(lambda j: j.error() is None, journeys)
     errors = len(journeys) - updates
 
     if updates / len(journeys) > 0.9:
@@ -78,7 +78,8 @@ def _update_journey(get_time: GetTimeFunc,
                    ) -> Either[JourneyTime]:
     # print("Updating from " + origin.name + " to " + destination.name)
     journey_time = get_time(destination, origin)
-    return Either.try_bind(save_journey(destination, origin))(journey_time)
+    # return Either.try_bind(save_journey(destination, origin))(journey_time)
+    return journey_time.try_call(save_journey(destination, origin))
 
 
 def _output_message(results: Tuple[int,int,int]) -> str:

@@ -15,6 +15,7 @@ def get_peak_journey_time(api_key: str, destination: Station, origin: Station) -
     pipe = F() >> _get_peak_time >> _directions_request(api_key, origin, destination) >> _extract_journey_time
     return pipe(date.today())
 
+
 # Helpers
 
 @curried
@@ -28,15 +29,12 @@ def _directions_request(api_key: str, origin: Station, destination: Station, arr
             arrival_time=arrival_time
         )
 
-    directions = F() >> Either.try_(googlemaps.Client) >> Either.try_bind(_request(origin, destination, arrival_time))
-
-    return directions(api_key)
+    return Either.fromfunction(googlemaps.Client, api_key).try_call(_request(origin, destination, arrival_time))
 
 
 @curried
 def _extract_journey_time(response: Either[Dict]) -> Either[int]:
-    pipe = F() >> Either.bind(_dict_path((0, "legs", 0, "duration", "value"))) >> Either.bind(lambda t: int(t/60))
-    return pipe(response)
+    return response.try_call(_dict_path((0, "legs", 0, "duration", "value"))).call(lambda t: int(t/60))
 
 
 def _get_peak_time(base_date: date) -> int:

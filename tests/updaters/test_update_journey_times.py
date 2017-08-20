@@ -28,18 +28,18 @@ class TestUpdateJourneyTimes(TestCase):
     def test_update_journey(self):
         origin = self._all_stations[0]
         dest = self._all_stations[1]
-        result = _update_journey(self._mock_get_time, self._mock_save_journey, dest, origin).get_value()
+        result = _update_journey(self._mock_get_time, self._mock_save_journey, dest, origin).value()
 
         self.assertEqual(result.origin, origin)
         self.assertEqual(result.destination, dest)
-        self.assertEqual(result.time, self._mock_get_time().get_value())
+        self.assertEqual(result.time, self._mock_get_time().value())
 
     def test_update_journey_with_error(self):
         origin = self._all_stations[0]
         dest = self._all_stations[1]
-        result = _update_journey(self._mock_get_time_error, self._mock_save_journey, dest, origin).get_error()
+        result = _update_journey(self._mock_get_time_error, self._mock_save_journey, dest, origin).error()
 
-        self.assertEqual(result.__str__(), self._mock_get_time_error().get_error().__str__())
+        self.assertEqual(result.__str__(), self._mock_get_time_error().error().__str__())
 
     def test_output_message(self):
         self.assertEqual("2 stations updated with 3 journey records created and 0 errors", _output_message((2,3,0)))
@@ -51,7 +51,7 @@ class TestUpdateJourneyTimes(TestCase):
         return Either(12)
 
     @staticmethod
-    def _mock_get_time_error(d:Station=None, o:Station=None):
+    def _mock_get_time_error(d:Station=None, o:Station=None) -> Either[int]:
         return Either(None, Exception("Error"))
 
     @staticmethod
