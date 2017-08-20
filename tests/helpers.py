@@ -31,6 +31,6 @@ def create_station_test_data() -> Tuple[Station, ...]:
 
 def create_season_ticket_test_data() -> Tuple[SeasonTicket, ...]:
     return (
-        SeasonTicket(origin='FOO', destination='BAZ', annual_price=1000),
-        SeasonTicket(origin='FOO', destination='BAZ', annual_price=1500)
+        SeasonTicket(destination='FOO', origin='FOZ', annual_price=1000),
+        SeasonTicket(destination='FOO', origin='BAZ', annual_price=1500)
     )

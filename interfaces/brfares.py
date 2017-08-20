@@ -1,11 +1,12 @@
 from typing import Dict
-from fnplus import find
+from fnplus import find, curried
 
 import requests
 
 from models import Station
 
 
+@curried
 def get_season_ticket_annual_price(destination: Station, origin: Station) -> int:
     response = _make_request(origin.sid, destination.sid)
     return _calculate_annual_fare(_extract_weekly_fare(response))

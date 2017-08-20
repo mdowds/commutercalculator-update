@@ -2,7 +2,7 @@ from typing import Tuple
 from datetime import datetime
 
 from fnplus import curried
-from peewee import fn
+from peewee import fn, JOIN
 
 from models import Station, JourneyTime, SeasonTicket
 
@@ -15,14 +15,14 @@ def get_stations_for_journey_time_update() -> Tuple[Station, ...]:
 
 
 def get_station_for_season_ticket_update() -> Station:
-    res = Station.select()\
-        .join(SeasonTicket)\
+    res = Station.select(Station)\
+        .join(SeasonTicket, JOIN.LEFT_OUTER)\
         .where(
             (Station.min_zone == 1) | (Station.max_zone == 1),
             Station.modes == 'NR'
         )\
         .group_by(Station)\
-        .having(fn.Count(SeasonTicket.destination) > 0)\
+        .having(fn.Count(SeasonTicket.destination) == 0)\
         .limit(1)
 
     return res[0]
@@ -45,3 +45,7 @@ def update_journey_times_updated(station: Station, timestamp: datetime) -> Stati
     station.journey_times_updated = timestamp
     station.save()
     return station
+
+@curried
+def save_season_ticket(destination: Station, origin: Station, annual_price: int) -> SeasonTicket:
+    return SeasonTicket.create(origin=origin.sid, destination=destination.sid, annual_price=int(annual_price))
