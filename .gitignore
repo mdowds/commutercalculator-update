@@ -6,3 +6,4 @@ __pycache__/
 /functional_test/
 /update_test.sh
 /update.sh
+/.mypy_cache/

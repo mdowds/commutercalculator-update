@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime
-from typing import Tuple
+from typing import Tuple, Optional
 
 from fnplus import Either, curried
 
@@ -11,7 +11,7 @@ from models.cc_model import CCModel
 class UpdaterInteractor:
     __metaclass__ = ABCMeta
 
-    def __init__(self, debug: bool=False):
+    def __init__(self, debug: bool=False) -> None:
         self._debug = debug
 
     @property
@@ -27,7 +27,7 @@ class UpdaterInteractor:
         pass
 
     @abstractmethod
-    def update_dest_record(self, destination: Station, time: datetime) -> Station:
+    def update_dest_record(self, destination: Station, time: datetime) -> Optional[Station]:
         pass
 
     @abstractmethod

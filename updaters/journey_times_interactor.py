@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Tuple
+from typing import Tuple, Optional
 
 from fnplus import Either, curried
 
@@ -10,7 +10,7 @@ from interfaces import database as db, gmaps
 
 class JourneyTimesInteractor(UpdaterInteractor):
 
-    def __init__(self, api_key: str = None, debug: bool = False):
+    def __init__(self, api_key: str = None, debug: bool = False) -> None:
         super().__init__(debug)
         self._api_key = api_key
 
@@ -20,7 +20,7 @@ class JourneyTimesInteractor(UpdaterInteractor):
     def get_all_stations(self) -> Tuple[Station, ...]:
         return db.get_all_stations()
 
-    def update_dest_record(self, destination: Station, time: datetime) -> Station:
+    def update_dest_record(self, destination: Station, time: datetime) -> Optional[Station]:
         return db.update_journey_times_updated(destination, time)
 
     def get_update(self, destination: Station, origin: Station) -> Either[int]:

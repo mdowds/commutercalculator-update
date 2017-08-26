@@ -1,4 +1,5 @@
-from typing import Tuple
+from datetime import datetime
+from typing import Tuple, Optional
 
 from fnplus import Either, curried
 
@@ -18,6 +19,9 @@ class SeasonTicketsInteractor(UpdaterInteractor):
     def get_update(self, destination: Station, origin: Station) -> Either[int]:
         if self.debug: return Either(10)
         return brfares.get_season_ticket_annual_price(destination, origin)
+
+    def update_dest_record(self, destination: Station, time: datetime) -> Optional[Station]:
+        pass
 
     @curried
     def save_update(self, destination: Station, origin: Station, value: int) -> SeasonTicket:
