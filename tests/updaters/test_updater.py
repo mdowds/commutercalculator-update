@@ -41,7 +41,7 @@ class TestUpdater(TestCase):
     def test_update_journey(self):
         origin = self._all_stations[0]
         dest = self._all_stations[1]
-        result = _update_journey(self._interactor, dest, origin).value()
+        result = _update_journey(self._interactor, dest, origin).value
 
         self.assertEqual(result.origin, origin)
         self.assertEqual(result.destination, dest)
@@ -51,7 +51,7 @@ class TestUpdater(TestCase):
         origin = self._all_stations[0]
         dest = self._all_stations[1]
         self._interactor.return_error = True
-        result = _update_journey(self._interactor, dest, origin).error()
+        result = _update_journey(self._interactor, dest, origin).error
 
         self.assertEqual(result.__str__(), "Error")
 

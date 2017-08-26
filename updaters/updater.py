@@ -32,7 +32,7 @@ def _update_destination(interactor: UpdaterInteractor, destination: Station) -> 
 
     journeys = tmap(_update_journey(interactor, destination), origins)
 
-    updates = _conditional_len(lambda j: j.error() is None, journeys)
+    updates = _conditional_len(lambda j: j.error is None, journeys)
     errors = len(journeys) - updates
 
     if updates / len(journeys) > 0.9 and interactor.update_dest_record:
