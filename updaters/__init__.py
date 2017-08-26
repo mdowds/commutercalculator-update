@@ -1,2 +1,3 @@
-from .journey_times import journey_times
-from .season_tickets import season_tickets
+from .updater import update
+from .journey_times_interactor import JourneyTimesInteractor
+from .season_tickets_interactor import SeasonTicketsInteractor

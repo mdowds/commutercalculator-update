@@ -2,7 +2,7 @@ import sys, argparse, os
 
 import updaters
 from models import cc_database
-
+from updaters import JourneyTimesInteractor
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -16,4 +16,5 @@ if __name__ == '__main__':
         sys.exit(2)
 
     cc_database.init(args.path)
-    print(updaters.journey_times(api_key=args.key, debug=args.debug))
+    interactor = JourneyTimesInteractor(api_key=args.key, debug=args.debug)
+    print(updaters.update(interactor))

@@ -2,6 +2,7 @@ import sys, argparse, os
 
 import updaters
 from models import cc_database
+from updaters import SeasonTicketsInteractor
 
 
 if __name__ == '__main__':
@@ -15,4 +16,5 @@ if __name__ == '__main__':
         sys.exit(2)
 
     cc_database.init(args.path)
-    print(updaters.season_tickets(debug=args.debug))
+    interactor = SeasonTicketsInteractor(debug=args.debug)
+    print(updaters.update(interactor))
