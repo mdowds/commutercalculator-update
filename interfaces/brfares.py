@@ -20,8 +20,8 @@ def _make_request(orig_id: str, dest_id: str) -> Dict:
 
 def _extract_weekly_fare(response: Dict) -> Optional[int]:
     weekly_season_standard = tfilter(lambda fare: fare['ticket']['code'] == '7DS', response['fares'])
-    if len(weekly_season_standard) == 0:
-        print("No ticket found for " + response['orig']['crs'] + " to " + response['dest']['crs'])
+    # if len(weekly_season_standard) == 0:
+    #     print("No ticket found for " + response['orig']['crs'] + " to " + response['dest']['crs'])
     return weekly_season_standard[0]['adult']['fare'] if len(weekly_season_standard) > 0 else None
 
 
