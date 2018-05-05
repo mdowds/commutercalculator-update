@@ -3,7 +3,4 @@ venv/
 __pycache__/
 *.pyc
 /vagrant-config/
-/functional_test/
-/update_test.sh
-/update.sh
 /.mypy_cache/
