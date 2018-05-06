@@ -17,4 +17,4 @@ if __name__ == '__main__':
 
     cc_database.init(args.path)
     interactor = JourneyTimesInteractor(api_key=args.key, debug=args.debug)
-    print(updaters.update(interactor))
+    print("Journey times: " + updaters.update(interactor))

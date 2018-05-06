@@ -17,4 +17,4 @@ if __name__ == '__main__':
 
     cc_database.init(args.path)
     interactor = SeasonTicketsInteractor(debug=args.debug)
-    print(updaters.update(interactor))
+    print("Season tickets: " + updaters.update(interactor))
