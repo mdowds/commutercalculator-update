@@ -4,7 +4,7 @@ fn.py==0.4.4
 fnplus==0.4
 googlemaps==2.5.0
 idna==2.5
-peewee==2.10.1
+peewee==3.4.0
 pytz==2018.4
 requests==2.18.4
 typed-ast==1.1.0
