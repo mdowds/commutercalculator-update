@@ -1,19 +1,20 @@
 from unittest import TestCase
 
-from playhouse.test_utils import test_database
 from peewee import SqliteDatabase
 from fnplus import tfilter
 
 from interfaces.database import *
-from models import SeasonTicket
 from tests import helpers
+
+test_db = SqliteDatabase(':memory:')
 
 
 class TestUpdateJourneyTimes(TestCase):
 
-    test_db = SqliteDatabase(':memory:')
-
     def setUp(self):
+        SeasonTicket.bind(test_db)
+        test_db.create_tables([SeasonTicket, Station, JourneyTime])
+
         self._all_stations = self.setUp_station_data()
         self._season_tickets = self.setUp_season_ticket_data()
         self._fooStation = self._all_stations[0]
@@ -22,11 +23,8 @@ class TestUpdateJourneyTimes(TestCase):
     def tearDown(self):
         Station.delete()
         SeasonTicket.delete()
-
-    def run(self, result=None):
-        # All queries will be run in `test_db`
-        with test_database(self.test_db, [Station, JourneyTime, SeasonTicket]):
-            super(TestUpdateJourneyTimes, self).run(result)
+        test_db.drop_tables([SeasonTicket, Station, JourneyTime])
+        test_db.close()
 
     def test_get_stations_for_journey_time_update_returns_correct_limit(self):
         self.assertEqual(3, len(get_stations_for_journey_time_update()))
