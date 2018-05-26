@@ -8,4 +8,4 @@ peewee==2.10.1
 pytz==2018.4
 requests==2.18.4
 typed-ast==1.0.4
-urllib3==1.21.1
+urllib3==1.22
