@@ -1,6 +1,6 @@
 certifi==2017.4.17
 chardet==3.0.4
-fn.py==0.4.4
+fn.py==0.5.2
 fnplus==0.4
 googlemaps==2.5.0
 idna==2.5
