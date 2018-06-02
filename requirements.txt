@@ -2,7 +2,7 @@ certifi==2018.4.16
 chardet==3.0.4
 fn.py==0.5.2
 fnplus==0.4.1
-googlemaps==2.5.0
+googlemaps==2.5.1
 idna==2.6
 peewee==3.4.0
 pytz==2018.4
