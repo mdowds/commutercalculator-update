@@ -10,6 +10,8 @@ COPY models /app/models
 COPY updaters /app/updaters
 COPY update_journey_times.py /app/update_journey_times.py
 COPY update_season_tickets.py /app/update_season_tickets.py
-COPY update /app/update
 
-ENTRYPOINT ["bash", "-c", "/app/update"]
+COPY update /app/update
+RUN chmod +x /app/update
+
+ENTRYPOINT ["bash", "-c"]

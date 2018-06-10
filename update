@@ -7,3 +7,12 @@ journey_times() {
 season_tickets() {
     python update_season_tickets.py /app/data/ccdb.sqlite;
 }
+
+if [[ $1 =~ ^(journey_times|season_tickets)$ ]]; then
+    COMMAND=$1
+    shift
+    $COMMAND "$@"
+else
+    echo "Command not recognised: $1"
+    exit 1
+fi
