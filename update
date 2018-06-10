@@ -1,0 +1,9 @@
+#!/bin/bash
+
+journey_times() {
+    python update_journey_times.py /app/data/ccdb.sqlite -k $GMAPS_API_KEY;
+}
+
+season_tickets() {
+    python update_season_tickets.py /app/data/ccdb.sqlite;
+}

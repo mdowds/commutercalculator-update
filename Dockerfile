@@ -10,6 +10,6 @@ COPY models /app/models
 COPY updaters /app/updaters
 COPY update_journey_times.py /app/update_journey_times.py
 COPY update_season_tickets.py /app/update_season_tickets.py
-COPY run.sh /app/run.sh
+COPY update /app/update
 
-CMD ["bash", "-c", "/app/run.sh"]
+ENTRYPOINT ["bash", "-c", "/app/update"]
