@@ -8,11 +8,13 @@ from models import Station
 from .updater_interactor import UpdaterInteractor
 
 UpdateResponse = NamedTuple('UpdateResponse', (('updates', int), ('errors', int)))
+UpdateOutput = NamedTuple('UpdateOutput', (('message', str), ('has_errors', bool)))
 
 
-def update(interactor: UpdaterInteractor) -> str:
+def update(interactor: UpdaterInteractor) -> UpdateOutput:
     update_results = _update_destinations(interactor)
-    return _output_message(update_results)
+    has_errors = update_results[2] > 0
+    return UpdateOutput(_output_message(update_results), has_errors)
 
 
 def _update_destinations(interactor: UpdaterInteractor) -> Tuple[int, int, int]:
@@ -22,7 +24,7 @@ def _update_destinations(interactor: UpdaterInteractor) -> Tuple[int, int, int]:
     updates = sum((response.updates for response in all_update_responses))
     errors = sum((response.errors for response in all_update_responses))
 
-    return (len(all_update_responses), updates, errors)
+    return len(all_update_responses), updates, errors
 
 
 @curried
@@ -59,4 +61,4 @@ def _output_message(results: Tuple[int, int, int]) -> str:
 
 T = TypeVar('T')
 def _conditional_len(cond: Callable[[T], bool], seq: Iterable[T]) -> int:
-    return reduce(lambda len, x: len+1 if cond(x) else len, seq, 0)
+    return reduce(lambda length, x: length + 1 if cond(x) else length, seq, 0)

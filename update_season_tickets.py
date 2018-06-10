@@ -1,9 +1,10 @@
-import sys, argparse, os
+import argparse
+import os
+import sys
 
 import updaters
 from models import cc_database
 from updaters import SeasonTicketsInteractor
-
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -13,8 +14,12 @@ if __name__ == '__main__':
 
     if not os.path.isfile(args.path):
         print("Error: file not found at " + args.path)
-        sys.exit(2)
+        sys.exit(1)
 
     cc_database.init(args.path)
     interactor = SeasonTicketsInteractor(debug=args.debug)
-    print("Season tickets: " + updaters.update(interactor))
+    update_results = updaters.update(interactor)
+    print("Season tickets: " + update_results.message)
+
+    if update_results.has_errors:
+        sys.exit(1)

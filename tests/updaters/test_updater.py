@@ -14,12 +14,16 @@ class TestUpdater(TestCase):
 
     def test_update(self):
         result = update(self._interactor)
-        self.assertEqual("3 stations updated with 9 records created and 0 errors", result)
+
+        self.assertEqual("3 stations updated with 9 records created and 0 errors", result.message)
+        self.assertFalse(result.has_errors)
 
     def test_update_with_error(self):
         self._interactor.return_error = True
         result = update(self._interactor)
-        self.assertEqual("3 stations updated with 0 records created and 9 errors", result)
+
+        self.assertEqual("3 stations updated with 0 records created and 9 errors", result.message)
+        self.assertTrue(result.has_errors)
 
     def test_update_destinations(self):
         updated = _update_destinations(self._interactor)
