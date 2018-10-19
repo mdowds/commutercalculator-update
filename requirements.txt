@@ -6,6 +6,6 @@ googlemaps==2.5.1
 idna==2.7
 peewee==3.7.1
 pytz==2018.5
-requests==2.19.1
+requests==2.20.0
 typed-ast==1.1.0
 urllib3==1.22
