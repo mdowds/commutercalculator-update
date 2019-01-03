@@ -45,7 +45,7 @@ def _update_destination(interactor: UpdaterInteractor, destination: Station) -> 
 
 @curried
 def _update_journey(interactor: UpdaterInteractor, destination: Station, origin: Station) -> Either:
-    if interactor.debug: print("Updating from " + origin.name + " to " + destination.name)
+    print("Updating from " + origin.name + " to " + destination.name)
 
     journey = interactor.get_update(destination, origin)
     return journey.try_call(interactor.save_update(destination, origin))
