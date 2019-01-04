@@ -1,5 +1,9 @@
 language: python
 python:
-  - 3.6
+- 3.6
 install: pip install -r requirements.txt
 script: python -m unittest discover tests -t /
+deploy:
+  provider: heroku
+  api_key:
+    secure: MrpBAfHlwoRC6kUfK1jo78dVMJSyXUkFudhA5eiMuhUP3y8m+clJtiSkVC5c5qF0g6VhENgXIXVkLUuKaX/gVs6mK8K9+WvdpXxkjgWtHMK6mmwfdjwfwLCXblsc0wFDJOjfgS3ZtIK0WjEhwyac8plWHmevn2Y9XDwEqqtsAeMe9p+3I4qXowjBvfmwtfOb29x778jbw5aUB3kFynK0CylyouHFIc2c1slYyGgTcwJrQ+cQ273B8qIEv28UAShIyPiGlCJq29dVzcZzkWTbKIOXEljqAJjkvFwptT0GpYdQ61HZqSdEiDAwvMIzUJfx7Gp643noF2uDtYNQktr2zJDajjiSJ4qb6xt5DydsVJEuOeZxw9zIP41hcsRjIPsEOO4wueaUo+OIYym/LY6SxG0wQEiIZXJle1qWa9rBYabPY/gleLYzOSycyWsh41FAIGT3sPu/mPPIO05nUUNoKYfL29Et1yrx6UbK3sq6sztbYSeE9K+vVWBejpmlcaSy1OKpl9FbD0Ctt7AKmB7sY9ZZYfOSj9Eq+AW/zBPZSEuzk/baU0VuOsB5YJc/YzWa6Q4ESbwR3yYGz/uUpinMGDhAZx4vT6cr135olPXWyGPEZq32iefX2wepwYyHmRPU4+8c1Jr+0iyVFt3LOHX+5/TsQBOxQHfRhxK2m/m9RV4=
