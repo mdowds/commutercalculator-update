@@ -7,7 +7,8 @@ import updaters
 from interfaces.database import Database
 from updaters import JourneyTimesInteractor
 
-if __name__ == '__main__':
+
+def update_journey_times():
     database = Database(firestore.Client())
     interactor = JourneyTimesInteractor(db=database, api_key=os.environ['GMAPS_API_KEY'])
 
@@ -16,3 +17,7 @@ if __name__ == '__main__':
 
     if update_results.has_errors:
         sys.exit(1)
+
+
+if __name__ == '__main__':
+    update_journey_times()
