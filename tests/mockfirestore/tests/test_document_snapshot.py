@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from functional_test.mockfirestore import MockFirestore
+from tests.mockfirestore import MockFirestore
 
 
 class TestDocumentSnapshot(TestCase):

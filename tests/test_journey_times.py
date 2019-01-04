@@ -2,8 +2,8 @@ import datetime
 from unittest import TestCase
 
 import updaters
-from functional_test.mockfirestore import MockFirestore
-from functional_test.mockfirestore.main import GeoPoint
+from tests.mockfirestore import MockFirestore
+from tests.mockfirestore import GeoPoint
 from interfaces.database import Database
 from updaters import JourneyTimesInteractor
 
