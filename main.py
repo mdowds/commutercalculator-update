@@ -1,7 +1,9 @@
+import json
 import os
 import sys
 
 from google.cloud import firestore
+from google.oauth2 import service_account
 
 import updaters
 from interfaces.database import Database
@@ -9,7 +11,11 @@ from updaters import JourneyTimesInteractor
 
 
 def update_journey_times():
-    database = Database(firestore.Client())
+
+    key = json.loads(os.environ['GCLOUD_SA_KEY'])
+    credentials = service_account.Credentials.from_service_account_info(key)
+
+    database = Database(firestore.Client(project=os.environ['GCLOUD_PROJECT_ID'], credentials=credentials))
     interactor = JourneyTimesInteractor(db=database, api_key=os.environ['GMAPS_API_KEY'])
 
     update_results = updaters.update(interactor)

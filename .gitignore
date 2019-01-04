@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 /vagrant-config/
 /.mypy_cache/
+*key.json
