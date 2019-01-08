@@ -48,6 +48,11 @@ def _update_journey(interactor: UpdaterInteractor, destination: Station, origin:
     print("Updating from " + origin.name + " to " + destination.name)
 
     journey = interactor.get_update(destination, origin)
+
+    if journey.error is not None:
+        print(journey.error_type)
+        print(journey.error)
+
     return journey.try_call(interactor.save_update(destination, origin))
 
 
