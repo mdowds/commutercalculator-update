@@ -9,7 +9,7 @@ class TestGmapsInterface(unittest.TestCase):
     dest = Station(sid="BAR", lat=1.6, long=-0.3, name="Bar")
 
     def test_extract_journey_time(self):
-        response = Either([{"legs": [{"duration": {"value": 600}}]}])
+        response = Either({"routes": [{"legs": [{"duration": {"value": 600}}]}]})
         self.assertEqual(10, _extract_journey_time(response)._value)
 
     def test_get_peak_time(self):

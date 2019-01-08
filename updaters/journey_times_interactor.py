@@ -26,7 +26,6 @@ class JourneyTimesInteractor(UpdaterInteractor):
         return self._db.update_journey_times_updated(destination, time)
 
     def get_update(self, destination: Station, origin: Station) -> Either[int]:
-        if self.debug: return Either(10)
         return gmaps.get_peak_journey_time(self._api_key, destination, origin)
 
     @curried
