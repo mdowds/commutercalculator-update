@@ -1,0 +1,2 @@
+class JourneyCostError(Exception):
+    pass

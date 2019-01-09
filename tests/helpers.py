@@ -1,7 +1,8 @@
 from datetime import datetime
-from typing import Tuple
+from typing import Tuple, Any, Dict, List
 
 from models import Station
+from tests.mockfirestore import GeoPoint
 
 
 def make_datetime(day):
@@ -22,6 +23,24 @@ def create_station_test_data() -> Tuple[Station, ...]:
         _station('BAZ', 'Baz'),
         _station('FOZ', 'Foz')
     )
+
+
+def make_station_dict(sid: str, name: str, location: GeoPoint = GeoPoint(0.0, 0.0), zones: List[int] = []) -> Dict[
+    str, Any]:
+    return {
+        'sid': sid,
+        'name': name,
+        'location': location,
+        'zones': zones
+    }
+
+
+def make_journey_dict(origin: Dict[str, Any]) -> Dict[str, Any]:
+    return {
+        origin['sid']: {
+            'origin': origin
+        }
+    }
 
 # def create_season_ticket_test_data() -> Tuple[SeasonTicket, ...]:
 #     return (

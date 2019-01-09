@@ -5,21 +5,14 @@ from unittest import TestCase
 import responses
 
 import updaters
+from tests.helpers import make_station_dict
 from tests.mockfirestore import MockFirestore
 from tests.mockfirestore import GeoPoint
 from interfaces.database import Database
 from updaters import JourneyTimesInteractor
 
-lbg = {
-    'sid': 'LBG',
-    'name': 'London Bridge',
-    'location': GeoPoint(1.0, 1.0)
-}
-kgx = {
-    'sid': 'KGX',
-    'name': 'Kings Cross',
-    'location': GeoPoint(0.0, 0.0)
-}
+lbg = make_station_dict('LBG', 'London Bridge', location=GeoPoint(1.0, 1.0))
+kgx = make_station_dict('KGX', 'Kings Cross', location=GeoPoint(0.0, 0.0))
 
 
 class JourneyTimesTests(TestCase):
@@ -55,7 +48,8 @@ class JourneyTimesTests(TestCase):
             'origin': {
                 'sid': 'KGX',
                 'location': GeoPoint(latitude=0.0, longitude=0.0),
-                'name': 'Kings Cross'
+                'name': 'Kings Cross',
+                'zones': []
             },
             'time': 10
         }

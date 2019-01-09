@@ -36,6 +36,11 @@ def _update_destination(interactor: UpdaterInteractor, destination: Station) -> 
 
     journeys = map(_update_journey(interactor, destination), tuple(origins))
 
+    for journey in journeys:
+        if journey.error is not None:
+            print(journey.error_type)
+            print(journey.error)
+
     updates = _conditional_len(lambda j: j.error is None, journeys)
     errors = len(journeys) - updates
 
@@ -50,10 +55,6 @@ def _update_journey(interactor: UpdaterInteractor, destination: Station, origin:
     print("Updating from " + origin.name + " to " + destination.name)
 
     journey = interactor.get_update(destination, origin)
-
-    if journey.is_error:
-        print(journey.error_type)
-        print(journey.error)
 
     return journey >> interactor.save_update(destination, origin)
 

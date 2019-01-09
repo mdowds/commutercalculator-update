@@ -5,6 +5,7 @@ from typing import Tuple, Optional
 from fn.monad import Either
 from fn.func import curried
 
+from interfaces.database import Database
 from models import Station
 from models.cc_model import CCModel
 
@@ -12,7 +13,8 @@ from models.cc_model import CCModel
 class UpdaterInteractor:
     __metaclass__ = ABCMeta
 
-    def __init__(self, debug: bool=False) -> None:
+    def __init__(self, db: Database, debug: bool = False) -> None:
+        self.db = db
         self._debug = debug
 
     @property

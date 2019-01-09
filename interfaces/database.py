@@ -6,7 +6,7 @@ from fn.iters import map
 from google.cloud.firestore_v1beta1 import DocumentSnapshot, DocumentReference, CollectionReference
 from google.cloud import firestore
 
-from models import Station
+from models import Station, Travelcard
 
 
 class Database:
@@ -29,6 +29,14 @@ class Database:
 
         return map(lambda doc: Station.from_dict(doc.to_dict()), docs)
 
+    def get_stations_for_journey_costs_update(self) -> Tuple[Station, ...]:
+        # TODO manually set a base update time for each destination
+        docs: Iterable[DocumentSnapshot] = self._destinations\
+            .order_by('journey_costs_updated')\
+            .limit(1).get()
+
+        return map(lambda doc: Station.from_dict(doc.to_dict()), docs)
+
     def get_all_stations(self) -> Tuple[Station]:
         docs: Iterable[DocumentSnapshot] = self._stations.get()
         return map(lambda doc: Station.from_dict(doc.to_dict()), docs)
@@ -46,9 +54,26 @@ class Database:
                 'time': time
             })
 
+    def save_travelcard_price(self, destination: Station, origin: Station, travelcard: Travelcard):
+        destination_ref: DocumentReference = self._firestore.collection('destinations').document(destination.sid)
+        journey_ref: DocumentReference = destination_ref.collection('journeys').document(origin.sid)
+
+        if journey_ref.get().exists:
+            return journey_ref.update({'travelcard': travelcard.to_dict()})
+        else:
+            return journey_ref.set({
+                'origin': self._stations.document(origin.sid).get().to_dict(),
+                'travelcard': travelcard.to_dict()
+            })
+
     def update_journey_times_updated(self, destination: Station, timestamp: datetime):
         self._destinations.document(destination.sid).update({
             'journey_times_updated': timestamp
+        })
+
+    def update_journey_costs_updated(self, destination: Station, timestamp: datetime):
+        self._destinations.document(destination.sid).update({
+            'journey_costs_updated': timestamp
         })
 
 # def get_station_for_season_ticket_update() -> Station:

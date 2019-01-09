@@ -5,8 +5,8 @@ import datetime
 
 
 class TestGmapsInterface(unittest.TestCase):
-    origin = Station(sid="FOO", lat=1.5, long=-0.2, name="Foo")
-    dest = Station(sid="BAR", lat=1.6, long=-0.3, name="Bar")
+    origin = Station(sid="FOO", lat=1.5, long=-0.2, name="Foo", zones=[])
+    dest = Station(sid="BAR", lat=1.6, long=-0.3, name="Bar", zones=[])
 
     def test_extract_journey_time(self):
         response = {"routes": [{"legs": [{"duration": {"value": 600}}]}]}

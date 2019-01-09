@@ -61,6 +61,8 @@ class Query:
         limited = take(limit_amount, self._data.items())
         return Query(dict(limited))
 
+    # TODO implement where
+
 
 class CollectionReference:
     def __init__(self, data: Store, path: List[str]):
@@ -85,6 +87,8 @@ class CollectionReference:
     def limit(self, limit_amount: int) -> Query:
         collection = get_by_path(self._data, self._path)
         return Query(collection).limit(limit_amount)
+
+    # TODO implement where
 
 
 class MockFirestore:
