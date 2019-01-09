@@ -1,5 +1,5 @@
 cachetools==3.0.0
-certifi==2018.8.24
+certifi==2018.11.29
 chardet==3.0.4
 fn.py==0.5.2
 fnplus==0.4.1
