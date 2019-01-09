@@ -89,12 +89,16 @@ class CollectionReference:
 
 class MockFirestore:
 
-    _data: Store = {}
+    def __init__(self):
+        self._data: Store = {}
 
     def collection(self, name: str) -> CollectionReference:
         if name not in self._data:
             self._data[name] = {}
         return CollectionReference(self._data, [name])
+
+    def reset(self):
+        self._data = {}
 
 
 T = TypeVar('T')
