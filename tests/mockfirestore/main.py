@@ -17,10 +17,10 @@ class DocumentSnapshot:
         self._doc = doc
 
     @property
-    def exists(self):
+    def exists(self) -> bool:
         return self._doc != {}
 
-    def to_dict(self):
+    def to_dict(self) -> Document:
         return self._doc
 
 
@@ -29,7 +29,7 @@ class DocumentReference:
         self._data = data
         self._path = path
 
-    def get(self):
+    def get(self) -> DocumentSnapshot:
         return DocumentSnapshot(get_by_path(self._data, self._path))
 
     def set(self, data: Document):
@@ -38,7 +38,7 @@ class DocumentReference:
     def update(self, data: Dict[str, Any]):
         get_by_path(self._data, self._path).update(data)
 
-    def collection(self, name):
+    def collection(self, name) -> 'CollectionReference':
         document = get_by_path(self._data, self._path)
         new_path = self._path + [name]
         if name not in document:
