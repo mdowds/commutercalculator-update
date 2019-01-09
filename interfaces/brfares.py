@@ -1,5 +1,5 @@
 from typing import Dict, Optional
-from fnplus import Either, tfilter
+from fn.monad import Either
 
 import requests
 
@@ -8,7 +8,7 @@ from models import Station
 
 def get_season_ticket_annual_price(destination: Station, origin: Station) -> Either[int]:
     response = Either.fromfunction(_make_request, origin.sid, destination.sid)
-    return response.call(_extract_weekly_fare).call(_calculate_annual_fare)
+    return response >> _extract_weekly_fare >> _calculate_annual_fare
 
 
 def _make_request(orig_id: str, dest_id: str) -> Dict:
@@ -19,7 +19,7 @@ def _make_request(orig_id: str, dest_id: str) -> Dict:
 
 
 def _extract_weekly_fare(response: Dict) -> Optional[int]:
-    weekly_season_standard = tfilter(lambda fare: fare['ticket']['code'] == '7DS', response['fares'])
+    weekly_season_standard = filter(lambda fare: fare['ticket']['code'] == '7DS', response['fares'])
     # if len(weekly_season_standard) == 0:
     #     print("No ticket found for " + response['orig']['crs'] + " to " + response['dest']['crs'])
     return weekly_season_standard[0]['adult']['fare'] if len(weekly_season_standard) > 0 else None

@@ -1,7 +1,8 @@
 from typing import Tuple, Iterable
 from datetime import datetime
 
-from fnplus import curried, tmap
+from fn.func import curried
+from fn.iters import map
 from google.cloud.firestore_v1beta1 import DocumentSnapshot, DocumentReference, CollectionReference
 from google.cloud import firestore
 
@@ -26,11 +27,11 @@ class Database:
             .limit(1)\
             .get()
 
-        return tmap(lambda doc: Station.from_dict(doc.to_dict()), docs)
+        return map(lambda doc: Station.from_dict(doc.to_dict()), docs)
 
     def get_all_stations(self) -> Tuple[Station]:
         docs: Iterable[DocumentSnapshot] = self._stations.get()
-        return tmap(lambda doc: Station.from_dict(doc.to_dict()), docs)
+        return map(lambda doc: Station.from_dict(doc.to_dict()), docs)
 
     @curried
     def save_journey_time(self, destination: Station, origin: Station, time: int):

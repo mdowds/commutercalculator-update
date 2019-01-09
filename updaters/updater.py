@@ -2,7 +2,9 @@ from functools import reduce
 from typing import Tuple, NamedTuple, TypeVar, Callable, Iterable
 from datetime import datetime
 
-from fnplus import Either, tmap, tfilter, curried
+from fn.monad import Either
+from fn.func import curried
+from fn.iters import map
 
 from models import Station
 from .updater_interactor import UpdaterInteractor
@@ -19,7 +21,7 @@ def update(interactor: UpdaterInteractor) -> UpdateOutput:
 
 def _update_destinations(interactor: UpdaterInteractor) -> Tuple[int, int, int]:
     destinations = interactor.get_stations_to_update()
-    all_update_responses = tmap(_update_destination(interactor), destinations)
+    all_update_responses = map(_update_destination(interactor), destinations)
 
     updates = sum((response.updates for response in all_update_responses))
     errors = sum((response.errors for response in all_update_responses))
@@ -30,9 +32,9 @@ def _update_destinations(interactor: UpdaterInteractor) -> Tuple[int, int, int]:
 @curried
 def _update_destination(interactor: UpdaterInteractor, destination: Station) -> UpdateResponse:
     all_stations = interactor.get_all_stations()
-    origins = tfilter(lambda s: s.sid != destination.sid, all_stations)
+    origins = filter(lambda s: s.sid != destination.sid, all_stations)
 
-    journeys = tmap(_update_journey(interactor, destination), origins)
+    journeys = map(_update_journey(interactor, destination), tuple(origins))
 
     updates = _conditional_len(lambda j: j.error is None, journeys)
     errors = len(journeys) - updates
@@ -49,11 +51,11 @@ def _update_journey(interactor: UpdaterInteractor, destination: Station, origin:
 
     journey = interactor.get_update(destination, origin)
 
-    if journey.error is not None:
+    if journey.is_error:
         print(journey.error_type)
         print(journey.error)
 
-    return journey.try_call(interactor.save_update(destination, origin))
+    return journey >> interactor.save_update(destination, origin)
 
 
 def _output_message(results: Tuple[int, int, int]) -> str:

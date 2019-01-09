@@ -1,7 +1,8 @@
 from datetime import datetime
 from typing import Tuple, Optional
 
-from fnplus import Either, curried
+from fn.monad import Either
+from fn.func import curried
 
 from interfaces.database import Database
 from models import Station

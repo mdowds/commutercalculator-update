@@ -2,7 +2,8 @@ from abc import ABCMeta, abstractmethod
 from datetime import datetime
 from typing import Tuple, Optional
 
-from fnplus import Either, curried
+from fn.monad import Either
+from fn.func import curried
 
 from models import Station
 from models.cc_model import CCModel

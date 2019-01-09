@@ -4,38 +4,38 @@ from functools import reduce
 
 import requests
 from pytz import timezone
-from fnplus import curried, Either
-from fn import F
+from fn.monad import Either, Pipe
+from fn.func import curried
 
 from models import Station
 
 
 @curried
 def get_peak_journey_time(api_key: str, destination: Station, origin: Station) -> Either[int]:
-    pipe = F() >> _get_peak_time >> _directions_request(api_key, origin, destination) >> _extract_journey_time
-    return pipe(date.today())
+    return Either(date.today()) >> \
+           _get_peak_time >> \
+           _directions_request(api_key, origin, destination) >> \
+           _extract_journey_time
 
 
 # Helpers
 
 @curried
-def _directions_request(api_key: str, origin: Station, destination: Station, arrival_time: int = None) -> Either[Dict]:
-    def _request(origin, destination, arrival_time) -> Either[Dict]:
-        r = requests.get('https://maps.googleapis.com/maps/api/directions/json', params={
-            'origin': '%s,%s' % (origin.lat, origin.long),
-            'destination': '%s,%s' % (destination.lat, destination.long),
-            'mode': 'transit',
-            'arrival_time': arrival_time,
-            'key': api_key
-        })
-        return r.json()
-
-    return Either.fromfunction(_request, origin, destination, arrival_time)
+def _directions_request(api_key: str, origin: Station, destination: Station, arrival_time: int = None) -> Dict[str, Any]:
+    r = requests.get('https://maps.googleapis.com/maps/api/directions/json', params={
+        'origin': '%s,%s' % (origin.lat, origin.long),
+        'destination': '%s,%s' % (destination.lat, destination.long),
+        'mode': 'transit',
+        'arrival_time': arrival_time,
+        'key': api_key
+    })
+    return r.json()
 
 
 @curried
-def _extract_journey_time(response: Either[Dict]) -> Either[int]:
-    return response.try_call(_dict_path(("routes", 0, "legs", 0, "duration", "value"))).call(lambda t: int(t / 60))
+def _extract_journey_time(response: Dict[str, Any]) -> int:
+    pipe = Pipe(response) >> _dict_path(("routes", 0, "legs", 0, "duration", "value")) >> (lambda t: int(t / 60))
+    return pipe.value
 
 
 def _get_peak_time(base_date: date) -> int:
