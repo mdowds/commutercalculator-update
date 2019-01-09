@@ -15,7 +15,7 @@ protobuf==3.6.1
 pyasn1==0.4.4
 pyasn1-modules==0.2.2
 pytz==2018.5
-requests==2.20.0
+requests==2.21.0
 responses==0.10.5
 rsa==4.0
 six==1.12.0
