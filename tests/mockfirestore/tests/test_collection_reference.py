@@ -40,6 +40,58 @@ class TestCollectionReference(TestCase):
         docs = fs.collection('foo').document('first').collection('bar').get()
         self.assertEqual([], docs)
 
+    def test_collection_whereEquals(self):
+        fs = MockFirestore()
+        fs._data = {'foo': {
+            'first': {'valid': True},
+            'second': {'valid': False}
+        }}
+
+        docs = fs.collection('foo').where('valid', '==', True).get()
+        self.assertEqual({'valid': True}, docs[0].to_dict())
+
+    def test_collection_whereLessThan(self):
+        fs = MockFirestore()
+        fs._data = {'foo': {
+            'first': {'count': 1},
+            'second': {'count': 5}
+        }}
+
+        docs = fs.collection('foo').where('count', '<', 5).get()
+        self.assertEqual({'count': 1}, docs[0].to_dict())
+
+    def test_collection_whereLessThanOrEqual(self):
+        fs = MockFirestore()
+        fs._data = {'foo': {
+            'first': {'count': 1},
+            'second': {'count': 5}
+        }}
+
+        docs = fs.collection('foo').where('count', '<=', 5).get()
+        self.assertEqual({'count': 1}, docs[0].to_dict())
+        self.assertEqual({'count': 5}, docs[1].to_dict())
+
+    def test_collection_whereGreaterThan(self):
+        fs = MockFirestore()
+        fs._data = {'foo': {
+            'first': {'count': 1},
+            'second': {'count': 5}
+        }}
+
+        docs = fs.collection('foo').where('count', '>', 1).get()
+        self.assertEqual({'count': 5}, docs[0].to_dict())
+
+    def test_collection_whereGreaterThanOrEqual(self):
+        fs = MockFirestore()
+        fs._data = {'foo': {
+            'first': {'count': 1},
+            'second': {'count': 5}
+        }}
+
+        docs = fs.collection('foo').where('count', '>=', 1).get()
+        self.assertEqual({'count': 1}, docs[0].to_dict())
+        self.assertEqual({'count': 5}, docs[1].to_dict())
+
     def test_collection_orderBy(self):
         fs = MockFirestore()
         fs._data = {'foo': {

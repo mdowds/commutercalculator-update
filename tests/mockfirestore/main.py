@@ -1,9 +1,10 @@
 import operator
 from functools import reduce
-from typing import Dict, Any, List, Tuple, NamedTuple, TypeVar, Sequence
+from typing import Dict, Any, List, Tuple, NamedTuple, TypeVar, Sequence, Callable
 
 from fn.iters import take
 
+T = TypeVar('T')
 KeyValuePair = Tuple[str, Dict[str, Any]]
 Document = Dict[str, Any]
 Collection = Dict[str, Document]
@@ -13,7 +14,7 @@ GeoPoint = NamedTuple('GeoPoint', (('latitude', float), ('longitude', float)))
 
 
 class DocumentSnapshot:
-    def __init__(self, doc: Document):
+    def __init__(self, doc: Document) -> None:
         self._doc = doc
 
     @property
@@ -25,7 +26,7 @@ class DocumentSnapshot:
 
 
 class DocumentReference:
-    def __init__(self, data: Store, path: List[str]):
+    def __init__(self, data: Store, path: List[str]) -> None:
         self._data = data
         self._path = path
 
@@ -47,11 +48,16 @@ class DocumentReference:
 
 
 class Query:
-    def __init__(self, data: Collection):
+    def __init__(self, data: Collection) -> None:
         self._data = data
 
     def get(self) -> List[DocumentSnapshot]:
         return [DocumentSnapshot(doc) for doc in self._data.values()]
+
+    def where(self, field: str, op: str, value: Any) -> 'Query':
+        compare = self._compare_func(op)
+        filtered = {k: v for k, v in self._data.items() if compare(v[field], value)}
+        return Query(dict(filtered))
 
     def order_by(self, key: str) -> 'Query':
         sorted_items: List[KeyValuePair] = sorted(self._data.items(), key=lambda doc: doc[1][key])
@@ -61,11 +67,21 @@ class Query:
         limited = take(limit_amount, self._data.items())
         return Query(dict(limited))
 
-    # TODO implement where
+    def _compare_func(self, op: str) -> Callable[[T, T], bool]:
+        if op == '==':
+            return lambda x, y: x == y
+        elif op == '<':
+            return lambda x, y: x < y
+        elif op == '<=':
+            return lambda x, y: x <= y
+        elif op == '>':
+            return lambda x, y: x > y
+        elif op == '>=':
+            return lambda x, y: x >= y
 
 
 class CollectionReference:
-    def __init__(self, data: Store, path: List[str]):
+    def __init__(self, data: Store, path: List[str]) -> None:
         self._data = data
         self._path = path
 
@@ -80,6 +96,10 @@ class CollectionReference:
         collection = get_by_path(self._data, self._path)
         return [DocumentSnapshot(doc) for doc in collection.values()]
 
+    def where(self, field: str, op: str, value: Any) -> Query:
+        collection = get_by_path(self._data, self._path)
+        return Query(collection).where(field, op, value)
+
     def order_by(self, key: str) -> Query:
         collection = get_by_path(self._data, self._path)
         return Query(collection).order_by(key)
@@ -88,12 +108,10 @@ class CollectionReference:
         collection = get_by_path(self._data, self._path)
         return Query(collection).limit(limit_amount)
 
-    # TODO implement where
-
 
 class MockFirestore:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._data: Store = {}
 
     def collection(self, name: str) -> CollectionReference:
@@ -103,9 +121,6 @@ class MockFirestore:
 
     def reset(self):
         self._data = {}
-
-
-T = TypeVar('T')
 
 
 def get_by_path(data: Dict[str, T], path: Sequence[str]) -> T:
