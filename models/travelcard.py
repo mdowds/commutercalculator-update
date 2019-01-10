@@ -2,7 +2,7 @@ from typing import Dict, Optional
 
 
 class Travelcard:
-    def __init__(self, min_zone: int, max_zone: int, annual_price: int):
+    def __init__(self, min_zone: int, max_zone: int, annual_price: int) -> None:
         self.min_zone = min_zone
         self.max_zone = max_zone
         self.annual_price = annual_price

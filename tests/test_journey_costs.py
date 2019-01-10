@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, date
 from unittest import TestCase
 
 import responses
@@ -29,7 +29,7 @@ class JourneyCostsTests(TestCase):
         self.mock_db.collection('destinations').document('LBG').set({
             **lbg,
             'journeys': helpers.make_journey_dict(kgx),
-            'journey_costs_updated': datetime.datetime(2018, 12, 2)
+            'journey_costs_updated': datetime(2018, 12, 2)
         })
 
         update_results = updaters.update(self.interactor)
@@ -56,7 +56,7 @@ class JourneyCostsTests(TestCase):
         self.mock_db.collection('destinations').document('VXH').set({
             **vxh,
             'journeys': helpers.make_journey_dict(sra),
-            'journey_costs_updated': datetime.datetime(2018, 12, 2)
+            'journey_costs_updated': datetime(2018, 12, 2)
         })
 
         updaters.update(self.interactor)
@@ -81,7 +81,7 @@ class JourneyCostsTests(TestCase):
         self.mock_db.collection('destinations').document('VXH').set({
             **vxh,
             'journeys': helpers.make_journey_dict(lbg),
-            'journey_costs_updated': datetime.datetime(2018, 12, 2)
+            'journey_costs_updated': datetime(2018, 12, 2)
         })
 
         updaters.update(self.interactor)
@@ -105,7 +105,7 @@ class JourneyCostsTests(TestCase):
         self.mock_db.collection('stations').document('KGX').set(kgx)
         self.mock_db.collection('destinations').document('LBG').set({
             **lbg,
-            'journey_costs_updated': datetime.datetime(2018, 12, 2)
+            'journey_costs_updated': datetime(2018, 12, 2)
         })
 
         updaters.update(self.interactor)
@@ -130,11 +130,11 @@ class JourneyCostsTests(TestCase):
 
         self.mock_db.collection('destinations').document('LBG').set({
             **lbg,
-            'journey_costs_updated': datetime.datetime(2018, 12, 2)
+            'journey_costs_updated': datetime(2018, 12, 2)
         })
         self.mock_db.collection('destinations').document('KGX').set({
             **kgx,
-            'journey_costs_updated': datetime.datetime(2018, 12, 1)
+            'journey_costs_updated': datetime(2018, 12, 1)
         })
 
         updaters.update(self.interactor)
@@ -147,27 +147,26 @@ class JourneyCostsTests(TestCase):
 
         self.assertEqual(1, len(journeys_to_kgx))
 
-    # TODO make this pass
-    # def test_doesNotUpdateDestinationsUpdatedThisYear(self):
-    #     self.mock_db.collection('stations').document('LBG').set(lbg)
-    #     self.mock_db.collection('stations').document('KGX').set(kgx)
-    #
-    #     this_year = datetime.date.today().year
-    #     self.mock_db.collection('destinations').document('LBG').set({
-    #         **lbg,
-    #         'journey_costs_updated': datetime.datetime(this_year, 12, 2)
-    #     })
-    #
-    #     updaters.update(self.interactor)
-    #
-    #     journey = self.mock_db \
-    #         .collection('destinations') \
-    #         .document('LBG') \
-    #         .collection('journeys') \
-    #         .document('KGX') \
-    #         .get().to_dict()
-    #
-    #     self.assertTrue('travelcard' not in journey)
+    def test_doesNotUpdateDestinationsUpdatedThisYear(self):
+        self.mock_db.collection('stations').document('LBG').set(lbg)
+        self.mock_db.collection('stations').document('KGX').set(kgx)
+
+        this_year = date.today().year
+        self.mock_db.collection('destinations').document('LBG').set({
+            **lbg,
+            'journey_costs_updated': datetime(this_year, 12, 2)
+        })
+
+        updaters.update(self.interactor)
+
+        journey = self.mock_db \
+            .collection('destinations') \
+            .document('LBG') \
+            .collection('journeys') \
+            .document('KGX') \
+            .get().to_dict()
+
+        self.assertTrue('travelcard' not in journey)
 
     def test_updatesOneDestinationPerRun(self):
         self.mock_db.collection('stations').document('LBG').set(lbg)
@@ -175,11 +174,11 @@ class JourneyCostsTests(TestCase):
 
         self.mock_db.collection('destinations').document('LBG').set({
             **lbg,
-            'journey_costs_updated': datetime.datetime(2018, 12, 1)
+            'journey_costs_updated': datetime(2018, 12, 1)
         })
         self.mock_db.collection('destinations').document('KGX').set({
             **kgx,
-            'journey_costs_updated': datetime.datetime(2018, 12, 2)
+            'journey_costs_updated': datetime(2018, 12, 2)
         })
 
         updaters.update(self.interactor)
@@ -203,7 +202,7 @@ class JourneyCostsTests(TestCase):
         self.mock_db.collection('stations').document('LBG').set(lbg)
         self.mock_db.collection('stations').document('KGX').set(kgx)
 
-        original_update_time = datetime.datetime(2018, 12, 1)
+        original_update_time = datetime(2018, 12, 1)
         self.mock_db.collection('destinations').document('LBG').set({
             **lbg,
             'journey_costs_updated': original_update_time

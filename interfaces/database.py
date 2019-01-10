@@ -1,5 +1,5 @@
 from typing import Tuple, Iterable
-from datetime import datetime
+from datetime import datetime, date
 
 from fn.func import curried
 from fn.iters import map
@@ -30,8 +30,9 @@ class Database:
         return map(lambda doc: Station.from_dict(doc.to_dict()), docs)
 
     def get_stations_for_journey_costs_update(self) -> Tuple[Station, ...]:
-        # TODO manually set a base update time for each destination
+        this_year = date.today().year
         docs: Iterable[DocumentSnapshot] = self._destinations\
+            .where('journey_costs_updated', '<', datetime(this_year, 1, 1))\
             .order_by('journey_costs_updated')\
             .limit(1).get()
 
