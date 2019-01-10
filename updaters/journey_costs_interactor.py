@@ -1,10 +1,10 @@
 from datetime import datetime
 from functools import partial
-from typing import Tuple, Optional, TypeVar, Sequence, Any, Callable
+from typing import Tuple, Optional, TypeVar, Sequence, Any, Callable, Iterable
 
 from fn.monad import Either, Pipe
 from fn.func import curried
-from fn.iters import head
+from fn.iters import head, filter
 
 from exceptions import JourneyCostError
 from models import Station, Travelcard
@@ -13,10 +13,10 @@ from .updater_interactor import UpdaterInteractor
 
 class JourneyCostsInteractor(UpdaterInteractor):
 
-    def get_stations_to_update(self) -> Tuple[Station, ...]:
+    def get_stations_to_update(self) -> Iterable[Station]:
         return self.db.get_stations_for_journey_costs_update()
 
-    def get_all_stations(self) -> Tuple[Station, ...]:
+    def get_all_stations(self) -> Iterable[Station]:
         return self.db.get_all_stations()
 
     def get_update(self, destination: Station, origin: Station) -> Either[Travelcard]:
@@ -30,20 +30,19 @@ class JourneyCostsInteractor(UpdaterInteractor):
         return self.db.save_travelcard_price(destination, origin, value)
 
     def _get_cheapest_travelcard(self, destination: Station, origin: Station) -> Travelcard:
-        possible_travelcards = [
+        possible_travelcards = (
             Travelcard.for_zones(min_zone=max(destination.zones), max_zone=min(origin.zones)),
             Travelcard.for_zones(min_zone=min(destination.zones), max_zone=min(origin.zones))
-        ]
+        )
 
-        # TODO replace with fnpy's filter when updated
-        filter_null_results = partial(filter, lambda tc: tc is not None)
+        filter_null_results = filter(lambda tc: tc is not None)
 
         cheapest: Pipe[Travelcard] = Pipe(possible_travelcards) >> \
             filter_null_results >> \
             sort(lambda tc: tc.annual_price) >> \
             head
 
-        if cheapest is None:
+        if cheapest.value is None:
             raise JourneyCostError("No travelcard found for {} to {}".format(origin.name, destination.name))
 
         return cheapest.value

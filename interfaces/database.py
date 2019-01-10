@@ -21,7 +21,7 @@ class Database:
     def _stations(self) -> CollectionReference:
         return self._firestore.collection('stations')
 
-    def get_stations_for_journey_time_update(self) -> Tuple[Station, ...]:
+    def get_stations_for_journey_time_update(self) -> Iterable[Station]:
         docs: Iterable[DocumentSnapshot] = self._destinations\
             .order_by('journey_times_updated')\
             .limit(1)\
@@ -29,7 +29,7 @@ class Database:
 
         return map(lambda doc: Station.from_dict(doc.to_dict()), docs)
 
-    def get_stations_for_journey_costs_update(self) -> Tuple[Station, ...]:
+    def get_stations_for_journey_costs_update(self) -> Iterable[Station]:
         this_year = date.today().year
         docs: Iterable[DocumentSnapshot] = self._destinations\
             .where('journey_costs_updated', '<', datetime(this_year, 1, 1))\
@@ -38,7 +38,7 @@ class Database:
 
         return map(lambda doc: Station.from_dict(doc.to_dict()), docs)
 
-    def get_all_stations(self) -> Tuple[Station]:
+    def get_all_stations(self) -> Iterable[Station]:
         docs: Iterable[DocumentSnapshot] = self._stations.get()
         return map(lambda doc: Station.from_dict(doc.to_dict()), docs)
 

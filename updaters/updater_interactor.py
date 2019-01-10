@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime
-from typing import Tuple, Optional
+from typing import Tuple, Optional, Iterable
 
 from fn.monad import Either
 from fn.func import curried
@@ -21,11 +21,11 @@ class UpdaterInteractor:
         return self._debug
 
     @abstractmethod
-    def get_stations_to_update(self) -> Tuple[Station, ...]:
+    def get_stations_to_update(self) -> Iterable[Station]:
         pass
 
     @abstractmethod
-    def get_all_stations(self) -> Tuple[Station, ...]:
+    def get_all_stations(self) -> Iterable[Station]:
         pass
 
     @abstractmethod

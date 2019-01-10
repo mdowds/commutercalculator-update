@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Tuple, Optional
+from typing import Tuple, Optional, Iterable
 
 from fn.monad import Either
 from fn.func import curried
@@ -16,10 +16,10 @@ class JourneyTimesInteractor(UpdaterInteractor):
         super().__init__(db, debug)
         self._api_key = api_key
 
-    def get_stations_to_update(self) -> Tuple[Station, ...]:
+    def get_stations_to_update(self) -> Iterable[Station]:
         return self.db.get_stations_for_journey_time_update()
 
-    def get_all_stations(self) -> Tuple[Station, ...]:
+    def get_all_stations(self) -> Iterable[Station]:
         return self.db.get_all_stations()
 
     def update_dest_record(self, destination: Station, time: datetime) -> Optional[Station]:

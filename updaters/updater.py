@@ -4,7 +4,7 @@ from datetime import datetime
 
 from fn.monad import Either
 from fn.func import curried
-from fn.iters import map
+from fn.iters import map, filter_tuple, map_tuple
 
 from models import Station
 from .updater_interactor import UpdaterInteractor
@@ -21,7 +21,7 @@ def update(interactor: UpdaterInteractor) -> UpdateOutput:
 
 def _update_destinations(interactor: UpdaterInteractor) -> Tuple[int, int, int]:
     destinations = interactor.get_stations_to_update()
-    all_update_responses = map(_update_destination(interactor), destinations)
+    all_update_responses = map_tuple(_update_destination(interactor), destinations)
 
     updates = sum((response.updates for response in all_update_responses))
     errors = sum((response.errors for response in all_update_responses))
@@ -32,9 +32,9 @@ def _update_destinations(interactor: UpdaterInteractor) -> Tuple[int, int, int]:
 @curried
 def _update_destination(interactor: UpdaterInteractor, destination: Station) -> UpdateResponse:
     all_stations = interactor.get_all_stations()
-    origins = filter(lambda s: s.sid != destination.sid, all_stations)
+    origins = filter_tuple(lambda s: s.sid != destination.sid, all_stations)
 
-    journeys = map(_update_journey(interactor, destination), tuple(origins))
+    journeys = map_tuple(_update_journey(interactor, destination), origins)
 
     for journey in journeys:
         if journey.error is not None:
