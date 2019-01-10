@@ -12,7 +12,7 @@ idna==2.8
 protobuf==3.6.1
 pyasn1==0.4.5
 pyasn1-modules==0.2.2
-pytz==2018.5
+pytz==2018.9
 requests==2.21.0
 responses==0.10.5
 rsa==4.0
