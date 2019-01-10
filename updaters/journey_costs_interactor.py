@@ -1,10 +1,9 @@
 from datetime import datetime
-from functools import partial
-from typing import Tuple, Optional, TypeVar, Sequence, Any, Callable, Iterable
+from typing import Optional, TypeVar, Iterable
 
-from fn.monad import Either, Pipe
 from fn.func import curried
-from fn.iters import head, filter
+from fn.iters import filter, first, sort
+from fn.monad import Either, Pipe
 
 from exceptions import JourneyCostError
 from models import Station, Travelcard
@@ -40,7 +39,7 @@ class JourneyCostsInteractor(UpdaterInteractor):
         cheapest: Pipe[Travelcard] = Pipe(possible_travelcards) >> \
             filter_null_results >> \
             sort(lambda tc: tc.annual_price) >> \
-            head
+            first
 
         if cheapest.value is None:
             raise JourneyCostError("No travelcard found for {} to {}".format(origin.name, destination.name))
@@ -49,8 +48,3 @@ class JourneyCostsInteractor(UpdaterInteractor):
 
 
 T = TypeVar('T')
-
-
-@curried
-def sort(f: Callable[[T], Any], seq: Sequence[T]) -> Sequence[T]:
-    return sorted(seq, key=f)
