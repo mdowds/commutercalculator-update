@@ -7,7 +7,6 @@ from fn.func import curried
 
 from interfaces.database import Database
 from models import Station
-from models.cc_model import CCModel
 
 
 class UpdaterInteractor:
@@ -39,5 +38,5 @@ class UpdaterInteractor:
 
     @abstractmethod
     @curried
-    def save_update(self, destination: Station, origin: Station, value) -> CCModel:
+    def save_update(self, destination: Station, origin: Station, value):
         pass
