@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, NamedTuple
 
 
 class Travelcard:
@@ -46,3 +46,16 @@ prices = {
         '9': 2480
     }
 }
+
+
+class SeasonTicket:
+    def __init__(self, annual_price: int) -> None:
+        self.annual_price = annual_price
+
+    def to_dict(self) -> Dict[str, int]:
+        return {
+            'annual_price': self.annual_price
+        }
+
+
+JourneyCosts = NamedTuple('JourneyCosts', (('season_ticket', Optional[SeasonTicket]), ('travelcard', Travelcard)))

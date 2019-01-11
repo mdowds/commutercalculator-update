@@ -1,25 +1,30 @@
-# import os
-# import json
-#
-# from unittest import TestCase
-# from unittest.mock import patch
-#
-# from tests import helpers
-# from interfaces.brfares import *
-#
-#
-# class TestBrFares(TestCase):
-#
-#     @patch('interfaces.brfares.requests')
-#     def test_get_season_ticket_annual_price(self, mock_requests):
-#         mock_requests.get.return_value = MockRequest()
-#         stations = helpers.create_station_test_data()
-#
-#         self.assertEqual(728, get_season_ticket_annual_price(stations[0], stations[1]).value)
-#
-#
-# class MockRequest:
-#     def json(self):
-#         data_file = os.path.join(os.getcwd(), 'tests', 'interfaces', 'data', 'brfares_response.json')
-#         with open(data_file, 'r') as file:
-#             return json.load(file)
+from unittest import TestCase
+
+from interfaces.brfares import _extract_weekly_fare, _calculate_annual_fare
+
+
+class TestBrFares(TestCase):
+
+    def test_extract_weekly_fare(self):
+        response = {'fares': [{
+            'ticket': {
+                'code': '7DS'
+            },
+            'adult': {'fare': 7200}
+        }]}
+
+        self.assertEqual(7200, _extract_weekly_fare(response))
+        
+    def test_extract_weekly_fare_noWeeklyFareAvailable(self):
+        response = {'fares': [{
+            'ticket': {
+                'code': '1DS'
+            },
+            'adult': {'fare': 1000}
+        }]}
+
+        self.assertIsNone(_extract_weekly_fare(response))
+        
+    def test_calculate_annual_fare(self):
+        self.assertEqual(1200, _calculate_annual_fare(3000))
+

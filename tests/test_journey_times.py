@@ -44,16 +44,8 @@ class JourneyTimesTests(TestCase):
             .document('KGX') \
             .get().to_dict()
 
-        expected = {
-            'origin': {
-                'sid': 'KGX',
-                'location': GeoPoint(latitude=0.0, longitude=0.0),
-                'name': 'Kings Cross',
-                'zones': []
-            },
-            'time': 10
-        }
-        self.assertEqual(expected, journey)
+        self.assertEqual(10, journey['time'])
+        self.assertEqual(kgx, journey['origin'])
         self.assertRequestParamsCorrect(origin=kgx, destination=lbg)
 
     @responses.activate

@@ -1,9 +1,9 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime
-from typing import Tuple, Optional, Iterable
+from typing import Optional, Iterable
 
-from fn.monad import Either
 from fn.func import curried
+from fn.monad import Either
 
 from interfaces.database import Database
 from models import Station

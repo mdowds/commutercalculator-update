@@ -1,12 +1,12 @@
-from typing import Tuple, Iterable
 from datetime import datetime, date
+from typing import Iterable
 
 from fn.func import curried
 from fn.iters import map
-from google.cloud.firestore_v1beta1 import DocumentSnapshot, DocumentReference, CollectionReference
 from google.cloud import firestore
+from google.cloud.firestore_v1beta1 import DocumentSnapshot, DocumentReference, CollectionReference
 
-from models import Station, Travelcard
+from models import Station, JourneyCosts
 
 
 class Database:
@@ -55,16 +55,23 @@ class Database:
                 'time': time
             })
 
-    def save_travelcard_price(self, destination: Station, origin: Station, travelcard: Travelcard):
+    def save_journey_costs(self, destination: Station, origin: Station, costs: JourneyCosts):
         destination_ref: DocumentReference = self._firestore.collection('destinations').document(destination.sid)
         journey_ref: DocumentReference = destination_ref.collection('journeys').document(origin.sid)
 
+        season_ticket = {'season_ticket': costs.season_ticket.to_dict()} \
+            if costs.season_ticket is not None else {}
+
         if journey_ref.get().exists:
-            return journey_ref.update({'travelcard': travelcard.to_dict()})
+            return journey_ref.update({
+                'travelcard': costs.travelcard.to_dict(),
+                **season_ticket
+            })
         else:
             return journey_ref.set({
                 'origin': self._stations.document(origin.sid).get().to_dict(),
-                'travelcard': travelcard.to_dict()
+                'travelcard': costs.travelcard.to_dict(),
+                **season_ticket
             })
 
     def update_journey_times_updated(self, destination: Station, timestamp: datetime):
@@ -76,24 +83,3 @@ class Database:
         self._destinations.document(destination.sid).update({
             'journey_costs_updated': timestamp
         })
-
-# def get_station_for_season_ticket_update() -> Station:
-#     res = Station.select(Station)\
-#         .join(SeasonTicket, JOIN.LEFT_OUTER)\
-#         .where(
-#             (Station.min_zone == 1) | (Station.max_zone == 1),
-#             Station.modes == 'NR'
-#         )\
-#         .group_by(Station)\
-#         .having(fn.Count(SeasonTicket.destination) == 0)\
-#         .limit(1)
-#
-#     return res[0]
-#
-# def get_all_nr_stations() -> Tuple[Station, ...]:
-#     return Station.select().where(Station.modes == 'NR')
-#
-#
-# @curried
-# def save_season_ticket(destination: Station, origin: Station, annual_price: int) -> SeasonTicket:
-#     return SeasonTicket.create(origin=origin.sid, destination=destination.sid, annual_price=int(annual_price))

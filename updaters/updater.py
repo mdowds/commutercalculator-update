@@ -1,10 +1,10 @@
+from datetime import datetime
 from functools import reduce
 from typing import Tuple, NamedTuple, TypeVar, Callable, Iterable
-from datetime import datetime
 
-from fn.monad import Either
 from fn.func import curried
-from fn.iters import map, filter_tuple, map_tuple
+from fn.iters import filter_tuple, map_tuple
+from fn.monad import Either
 
 from models import Station
 from .updater_interactor import UpdaterInteractor
