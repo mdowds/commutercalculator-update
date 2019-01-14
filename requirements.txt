@@ -6,7 +6,7 @@ google-api-core==1.7.0
 google-auth==1.6.2
 google-cloud-core==0.29.1
 google-cloud-firestore==0.31.0
-googleapis-common-protos==1.5.5
+googleapis-common-protos==1.5.6
 grpcio==1.17.1
 idna==2.8
 protobuf==3.6.1
