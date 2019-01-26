@@ -12,8 +12,10 @@ from updaters.journey_costs_interactor import JourneyCostsInteractor
 lbg = helpers.make_station_dict('LBG', 'London Bridge', zones=[1], modes='NR')
 kgx = helpers.make_station_dict('KGX', 'Kings Cross', zones=[1], modes='NR')
 vxh = helpers.make_station_dict('VXH', 'Vauxhall', zones=[1, 2], modes='NR')
+zng = helpers.make_station_dict('ZNG', 'Notting Hill Gate', zones=[1, 2])
 sra = helpers.make_station_dict('SRA', 'Stratford', zones=[2, 3], modes='NR')
 bah = helpers.make_station_dict('BAH', 'Bank', zones=[1])
+snf = helpers.make_station_dict('SNF', 'Shenfield')
 
 
 class JourneyCostsTests(TestCase):
@@ -23,7 +25,9 @@ class JourneyCostsTests(TestCase):
 
         db = Database(self.mock_db)
         self.interactor = JourneyCostsInteractor(db, debug=True)
+        self._stub_season_ticket_response(30)
 
+    @responses.activate
     def test_updatesTravelcardPrices(self):
         self.mock_db.collection('stations').document('LBG').set(lbg)
         self.mock_db.collection('stations').document('KGX').set(kgx)
@@ -45,16 +49,14 @@ class JourneyCostsTests(TestCase):
             .get().to_dict()
 
         expected = {
-            'min_zone': 1,
-            'max_zone': 1,
+            'min_zone': '1',
+            'max_zone': '1',
             'annual_price': 1404
         }
         self.assertEqual(expected, journey['travelcard'])
 
     @responses.activate
     def test_updatesSeasonTicketPrices_forNRStations(self):
-        self._stub_season_ticket_response(30)
-
         self.mock_db.collection('stations').document('LBG').set(lbg)
         self.mock_db.collection('stations').document('SRA').set(sra)
         self.mock_db.collection('destinations').document('LBG').set({
@@ -103,7 +105,35 @@ class JourneyCostsTests(TestCase):
         self.assertEqual(0, len(responses.calls))
         self.assertTrue('season_ticket' not in journey)
 
-    def test_updatesTravelcardPrices_forMultiZoneStations(self):
+    @responses.activate
+    def test_updatesTravelcardPrices_forMultiZoneStations_sameZones(self):
+        self.mock_db.collection('stations').document('VXH').set(vxh)
+        self.mock_db.collection('stations').document('ZNG').set(zng)
+        self.mock_db.collection('destinations').document('VXH').set({
+            **vxh,
+            'journeys': helpers.make_journey_dict(zng),
+            'journey_costs_updated': datetime(2018, 12, 2)
+        })
+
+        updaters.update(self.interactor)
+
+        journey = self.mock_db \
+            .collection('destinations') \
+            .document('VXH') \
+            .collection('journeys') \
+            .document('ZNG') \
+            .get().to_dict()
+
+        expected = {
+            'min_zone': '2',
+            'max_zone': '2',
+            'annual_price': 1052
+        }
+        self.assertEqual(expected, journey['travelcard'])
+
+
+    @responses.activate
+    def test_updatesTravelcardPrices_forMultiZoneStations_differentZones(self):
         self.mock_db.collection('stations').document('VXH').set(vxh)
         self.mock_db.collection('stations').document('SRA').set(sra)
         self.mock_db.collection('destinations').document('VXH').set({
@@ -122,12 +152,13 @@ class JourneyCostsTests(TestCase):
             .get().to_dict()
 
         expected = {
-            'min_zone': 2,
-            'max_zone': 2,
+            'min_zone': '2',
+            'max_zone': '2',
             'annual_price': 1052
         }
         self.assertEqual(expected, journey['travelcard'])
 
+    @responses.activate
     def test_updatesTravelcardPrices_forMultiZoneStations_bothInZone1(self):
         self.mock_db.collection('stations').document('VXH').set(vxh)
         self.mock_db.collection('stations').document('LBG').set(lbg)
@@ -147,12 +178,13 @@ class JourneyCostsTests(TestCase):
             .get().to_dict()
 
         expected = {
-            'min_zone': 1,
-            'max_zone': 1,
+            'min_zone': '1',
+            'max_zone': '1',
             'annual_price': 1404
         }
         self.assertEqual(expected, journey['travelcard'])
 
+    @responses.activate
     def test_createsJourneyEntry_ifItDoesNotExist(self):
         self.mock_db.collection('stations').document('LBG').set(lbg)
         self.mock_db.collection('stations').document('KGX').set(kgx)
@@ -171,12 +203,13 @@ class JourneyCostsTests(TestCase):
             .get().to_dict()
 
         expected = {
-            'min_zone': 1,
-            'max_zone': 1,
+            'min_zone': '1',
+            'max_zone': '1',
             'annual_price': 1404
         }
         self.assertEqual(expected, journey['travelcard'])
 
+    @responses.activate
     def test_updatesTheLeastRecentlyUpdated(self):
         self.mock_db.collection('stations').document('LBG').set(lbg)
         self.mock_db.collection('stations').document('KGX').set(kgx)
@@ -200,6 +233,7 @@ class JourneyCostsTests(TestCase):
 
         self.assertEqual(1, len(journeys_to_kgx))
 
+    @responses.activate
     def test_doesNotUpdateDestinationsUpdatedThisYear(self):
         self.mock_db.collection('stations').document('LBG').set(lbg)
         self.mock_db.collection('stations').document('KGX').set(kgx)
@@ -221,6 +255,7 @@ class JourneyCostsTests(TestCase):
 
         self.assertTrue('travelcard' not in journey)
 
+    @responses.activate
     def test_updatesOneDestinationPerRun(self):
         self.mock_db.collection('stations').document('LBG').set(lbg)
         self.mock_db.collection('stations').document('KGX').set(kgx)
@@ -251,6 +286,7 @@ class JourneyCostsTests(TestCase):
         self.assertEqual(1, len(journeys_to_lbg))
         self.assertEqual(0, len(journeys_to_kgx))
 
+    @responses.activate
     def test_updatesTimestampAfterRun(self):
         self.mock_db.collection('stations').document('LBG').set(lbg)
         self.mock_db.collection('stations').document('KGX').set(kgx)
@@ -267,6 +303,32 @@ class JourneyCostsTests(TestCase):
             .get().to_dict()['journey_costs_updated']
 
         self.assertGreater(new_update_time, original_update_time)
+
+    @responses.activate
+    def test_updatesTravelcardPrices_forStationsWithSpecialFares(self):
+        self.mock_db.collection('stations').document('LBG').set(lbg)
+        self.mock_db.collection('stations').document('SNF').set(snf)
+        self.mock_db.collection('destinations').document('LBG').set({
+            **lbg,
+            'journeys': helpers.make_journey_dict(snf),
+            'journey_costs_updated': datetime(2018, 12, 2)
+        })
+
+        updaters.update(self.interactor)
+
+        journey = self.mock_db \
+            .collection('destinations') \
+            .document('LBG') \
+            .collection('journeys') \
+            .document('SNF') \
+            .get().to_dict()
+
+        expected = {
+            'min_zone': '1',
+            'max_zone': 'SNF',
+            'annual_price': 4364
+        }
+        self.assertEqual(expected, journey['travelcard'])
 
     def _stub_season_ticket_response(self, price: int):
         stub_response = {'fares': [{

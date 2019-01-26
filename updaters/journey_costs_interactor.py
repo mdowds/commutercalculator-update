@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional, TypeVar, Iterable
+from typing import Optional, TypeVar, Iterable, Tuple
 
 from fn.func import curried
 from fn.iters import filter, first, sort
@@ -44,10 +44,8 @@ class JourneyCostsInteractor(UpdaterInteractor):
 
     @curried
     def _add_cheapest_travelcard(self, destination: Station, origin: Station, season_ticket: Optional[SeasonTicket]) -> JourneyCosts:
-        possible_travelcards = (
-            Travelcard.for_zones(min_zone=max(destination.zones), max_zone=min(origin.zones)),
-            Travelcard.for_zones(min_zone=min(destination.zones), max_zone=min(origin.zones))
-        )
+
+        possible_travelcards = self._get_possible_travelcards(destination, origin)
 
         filter_null_results = filter(lambda tc: tc is not None)
 
@@ -61,5 +59,20 @@ class JourneyCostsInteractor(UpdaterInteractor):
 
         return JourneyCosts(season_ticket, cheapest.value)
 
+    def _get_possible_travelcards(self, destination, origin) -> Tuple[Travelcard, ...]:
 
-T = TypeVar('T')
+        dest_max_zone = str(max(destination.zones))
+
+        if len(origin.zones) == 0:
+            return Travelcard.for_zones(min_zone=dest_max_zone, max_zone=origin.sid),
+
+        origin_min_zone = str(min(origin.zones))
+        origin_max_zone = str(max(origin.zones))
+        dest_min_zone = str(min(destination.zones))
+
+        return (
+            Travelcard.for_zones(min_zone=dest_max_zone, max_zone=origin_min_zone),
+            Travelcard.for_zones(min_zone=dest_max_zone, max_zone=origin_max_zone),
+            Travelcard.for_zones(min_zone=dest_min_zone, max_zone=origin_min_zone)
+        )
+

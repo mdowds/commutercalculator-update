@@ -1,13 +1,13 @@
-from typing import Dict, Optional, NamedTuple
+from typing import Dict, Optional, NamedTuple, Union
 
 
 class Travelcard:
-    def __init__(self, min_zone: int, max_zone: int, annual_price: int) -> None:
+    def __init__(self, min_zone: str, max_zone: str, annual_price: int) -> None:
         self.min_zone = min_zone
         self.max_zone = max_zone
         self.annual_price = annual_price
 
-    def to_dict(self) -> Dict[str, int]:
+    def to_dict(self) -> Dict[str, Union[int, str]]:
         return {
             'min_zone': self.min_zone,
             'max_zone': self.max_zone,
@@ -15,9 +15,9 @@ class Travelcard:
         }
 
     @staticmethod
-    def for_zones(min_zone: int, max_zone: int) -> Optional['Travelcard']:
+    def for_zones(min_zone: str, max_zone: str) -> Optional['Travelcard']:
         try:
-            annual_price = prices[str(min_zone)][str(max_zone)]
+            annual_price = prices[min_zone][max_zone]
             return Travelcard(min_zone=min_zone, max_zone=max_zone, annual_price=annual_price)
         except KeyError:
             return None
@@ -33,7 +33,9 @@ prices = {
         '6': 2568,
         '7': 2792,
         '8': 3300,
-        '9': 3660
+        '9': 3660,
+        'WFJ': 3680,
+        'SNF': 4364
     },
     '2': {
         '2': 1052,
@@ -43,7 +45,9 @@ prices = {
         '6': 1756,
         '7': 1824,
         '8': 2480,
-        '9': 2480
+        '9': 2480,
+        'WFJ': 2480,
+        'SNF': 3312
     }
 }
 
