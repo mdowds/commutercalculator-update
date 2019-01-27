@@ -1,6 +1,6 @@
 from typing import Any, Dict, List
 
-from tests.mockfirestore import GeoPoint
+from google.cloud.firestore import GeoPoint
 
 
 def make_station_dict(sid: str,

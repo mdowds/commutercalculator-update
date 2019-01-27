@@ -6,8 +6,8 @@ import responses
 
 import updaters
 from tests.helpers import make_station_dict
-from tests.mockfirestore import MockFirestore
-from tests.mockfirestore import GeoPoint
+from mockfirestore import MockFirestore
+from google.cloud.firestore import GeoPoint
 from interfaces.database import Database
 from updaters import JourneyTimesInteractor
 

@@ -5,7 +5,7 @@ import responses
 
 import updaters
 from tests import helpers
-from tests.mockfirestore import MockFirestore
+from mockfirestore import MockFirestore
 from interfaces.database import Database
 from updaters.journey_costs_interactor import JourneyCostsInteractor
 
