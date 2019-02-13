@@ -6,7 +6,7 @@ google-api-core==1.7.0
 google-auth==1.6.2
 google-cloud-core==0.29.1
 google-cloud-firestore==0.31.0
-googleapis-common-protos==1.5.6
+googleapis-common-protos==1.5.8
 grpcio==1.18.0
 idna==2.8
 mock-firestore==0.1.1
