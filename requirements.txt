@@ -3,7 +3,7 @@ certifi==2018.11.29
 chardet==3.0.4
 fn-mdowds==0.9
 google-api-core==1.7.0
-google-auth==1.6.2
+google-auth==1.6.3
 google-cloud-core==0.29.1
 google-cloud-firestore==0.31.0
 googleapis-common-protos==1.5.8
