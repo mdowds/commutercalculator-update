@@ -9,7 +9,7 @@ google-cloud-firestore==1.2.0
 googleapis-common-protos==1.6.0
 grpcio==1.21.1
 idna==2.8
-mock-firestore==0.1.1
+mock-firestore==0.8.0
 protobuf==3.7.1
 pyasn1==0.4.5
 pyasn1-modules==0.2.5
