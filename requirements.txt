@@ -2,7 +2,7 @@ cachetools==3.1.1
 certifi==2019.3.9
 chardet==3.0.4
 fn-mdowds==0.9
-google-api-core==1.11.1
+google-api-core==1.31.0
 google-auth==1.6.3
 google-cloud-core==1.0.3
 google-cloud-firestore==1.2.0
